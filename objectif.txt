@@ -1,0 +1,320 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    objectif.txt                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ecesari <ecesari@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/01/24 10:57:51 by ecesari           #+#    #+#              #
+#    Updated: 2018/03/15 17:31:05 by ecesari          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+% [FLAGS] [WIDTH] [.PRECISION] [LENGHT] TYPE
+
+Ordre de traitement 
+1 PRECISION
+2 FLAGS ('+' '#' ' ')
+3 WIDTH champs (presentaiton ('-' '0'))
+
+_______________________________________________________________________________
+printf("%")	produces
+_______________________________________________________________________________
+FLAGS : '-' '+' '0' ' ' '#'
+
+-> '-' 
+Left-align the output of this placeholder. 
+(The default is to right-align the output.)
+Overrides the 0 flag.
+This is useful only with a width specifier.
+For example, 	printf("%6d\n", 45) 	produces 	'    45'
+For example, 	printf("%-6d\n", 45) 	produces 	'45    '
+
+-> '+'
+Forces the sign (+ or -) to always be shown only for d type. 
+Default is to just show the - sign. 
+Overrides the space flag.
+For example, 	printf("%+d, 157) 		produces 	'+157'
+
+-> '0'
+For numeric types (d, i, o, u, x, X, e, E, f, g, and G) 
+leading zeros are used to pad the field width instead of spaces. 
+This is useful only with a width specifier. Precision overrides this flag). 
+For example, 	printf("%2X",3) 		produces 	' 3'
+while 			printf("%02X",3) 		produces 	'03'
+attention		printf("%012s\n", "ok")	produces 	'0000000000ok'
+
+-> ' ' 
+Prepends a space for positive signed-numeric types. 
+positive =  , negative = -. 
+This flag is ignored if the + flag exists.
+(The default doesn't prepend anything in front of positive numbers.)
+For example, 	printf("% d", 12) 		produces 	' 12'
+
+-> '#'
+Alternate form:
+types				Result
+o					Precision is increased to make the first digit a zero.
+ 					For example, printf("%#o", 74) produces 0112.
+					sauf pour les valeurs 0 
+X or x				Nonzero value will have 0x or 0X prefixed to it.
+					sauf pour les valeurs 0
+					For example, printf("%#x", 784) produces 0x310.
+E, e, f, g, or G	Result will always have a decimal point.
+					For example, printf("%# ", ) produces ? A REVOIR
+G or g				Trailing zeros will not be removed.
+					For example, printf("%# ", ) produces ? A REVOIR
+
+_______________________________________________________________________________
+WIDTH : => definit le contenant
+
+An optional decimal digit string specifying a minimum field width.
+If the converted value has fewer characters than the field width, it will
+be padded with spaces on the left (or right, if the left-adjustment flag
+has been given) to fill out the field width.
+If a * is used in place of the width specifer, then the next argument 
+(which must be an int type) specifies the width of the field. 
+Note: when using the * with the width and/or precision specifier, 
+the width argument comes first, then the precision argument, 
+then the value to be converted.
+
+For example, 	printf("%11d\n",311) 	produces 	"        311"
+For example, 	printf("%5c\n",65) 		produces 	"    A"
+pas de modifications obervees pour s
+
+_______________________________________________________________________________
+.PRECISION : => influe la variable => defniti contenu
+si variable 
+
+An optional precision, in the form of a period . followed by an optional
+digit string. 
+If the digit string is omitted, the precision is taken as zero.
+The precision begins with a dot (.) to distinguish itself from the width specifier. 
+The precision can be given as a decimal value or as a dynamic value 
+when passed as another argument when indicated by an asterisk (*). 
+If a * is used, then the next argument (which is an int type) specifies the precision. 
+Note: when using the * with the width and/or precision specifier, 
+the width argument comes first, then the precision argument, 
+then the value to be converted. 
+For example, printf("%.*s", 3, "abcdef") will result in abc being printed
+	char *s = "good afternoon";
+	printf("%.*s\n", -25, s);	good afternoon$
+	printf("%*s\n", -55, s);	good afternoon                                         $
+	printf("%-*s\n", -55, s);	good afternoon                                         $
+	
+	printf("%*.*d\n", -11, 10, 311);	0000000311 $
+	printf("%*.*d\n", -11, -10, 311);	311        $
+
+Precision does not affect the c & % types.
+
+[.precision]	Type				Result
+(none)			d, i, o, u, x, X	1 The minimum number of digits to appear.
+				f, e, E				6 Specifies the number of digits after 
+									the decimal point.
+				g, G 				all significant digits are shown
+				p					meme chose que precision plus petite que valeur ou precision nulle, tout s'affiche normalement
+									sauf attention pour valeur 0 printf("'%p'\n",0) produces '0x0'
+				s 					all characters in string are print up to but 
+									not including the null character.
+
+. or .0			d, i, o, u, x, X	default precision value is used unless the 
+									value (the content of the type) is zero 
+									in which case no characters are printed.
+									printf("%.d\n",0) produces (n'affiche rien).
+				f, e, E				no decimal point character or digits are printed
+									float f = ; printf("%.f\n",1.5461230) produces 2.
+				g, G 				the precision is assumed to be 1.
+				p					meme chose que precision plus petite que valeur ou precision inexistante, tout s'affiche normalement
+									attention pour valeur 0 printf("'%.p'\n",0) produces '0x'
+				s 					no character printed
+
+.n				d, i, o, u, x, X	all digits are printed (left-padding with zeros if n is higher than value)
+				f, e, E				specifies the number of digits after the decimal point.
+									the printed value is rounded up
+				g, G 				specifies the number of significant digits to print.
+				p					all digits are printed (left-padding with zeros if n is higher than value)
+				s 					specifies the maximum number of characters to print
+									it limits the number of characters that should be output, 
+									after which the string is truncated.
+
+_______________________________________________________________________________
+LENGHT :
+
+An optional length modifier, that specifies the size of the argument.
+
+				int				unsigned int		char		char*					
+Modifier    	d, i   			o, u, x, X   		c			s				n
+hh          	signed char		unsigned char     								signed char *
+h           	short      		unsigned short    								short *
+l (ell)     	long       		unsigned long     	wint_t (C)	wchar_t (S)		long *
+ll (ell ell)	long long  		unsigned long long								long long *
+j           	intmax_t   		uintmax_t         								intmax_t *
+z           	size_t˚ 		size_t            								size_t˚
+
+˚ The z modifier, when applied to a d or i conversion, indicates that the argument 
+is of a signed type equivalent in size to a size_t.  
+Similarly, when applied to an n conversion, it indicates that the argument is a pointer
+to a signed type equivalent in size to a size_t.
+
+Modifier    a, A, e, E, f, F, g, G
+l (ell)     double (ignored, same behavior as without it)
+L           long double
+
+pour les valeurs maximales de chaque type <limits.h>
+
+_______________________________________________________________________________
+TYPE : 	sSpdDioOuUxXcC bonus  eE, fF, gG, aA, n
+
+A character that specifies the type of conversion to be applied.
+
+diouxX  The int (or appropriate variant) argument is converted to 
+		signed decimal (d and i), 
+		unsigned octal (o), 
+		unsigned decimal (u), or
+        unsigned hexadecimal (x and X) notation.  
+
+DOU     The long int argument is converted to 
+		signed decimal, 
+		unsigned octal, or 
+		unsigned decimal, as if the format had been ld, lo, or lu
+        respectively.  
+		These conversion characters are deprecated, and will eventually disappear.
+
+C       Treated as c with the l (ell) modifier.
+
+c       The int argument is converted to an 
+		unsigned char, and the resulting character is written.
+
+        If the l (ell) modifier is used, the wint_t argument shall be con-
+        verted to a wchar_t, and the (potentially multi-byte) sequence rep-
+        resenting the single wide character is written, including any shift
+        sequences.  If a shift sequence is used, the shift state is also
+        restored to the original state after the character.
+
+S       Treated as s with the l (ell) modifier.
+
+s       The char * argument is expected to be 
+		a pointer to an array of character type (pointer to a string).  
+		Characters from the array are written up to (but not including) 
+		a terminating NUL character; if a precision is specified, no more 
+		than the number specified are written.  
+		If a precision is given, no null character need be present; if
+        the precision is not specified, or is greater than the size of the
+        array, the array must contain a terminating NUL character.
+
+        If the l (ell) modifier is used, the wchar_t * argument is expected
+        to be a pointer to an array of wide characters (pointer to a wide
+        string).  For each wide character in the string, the (potentially
+        multi-byte) sequence representing the wide character is written,
+        including any shift sequences.  If any shift sequence is used, the
+        shift state is also restored to the original state after the string.
+        Wide characters from the array are written up to (but not including)
+        a terminating wide NUL character; if a precision is specified, no
+        more than the number of bytes specified are written (including shift
+        sequences).  
+		Partial characters are never written.  If a precision
+        is given, no null character need be present; if the precision is not
+        specified, or is greater than the number of bytes required to render
+        the multibyte representation of the string, the array must contain a
+        terminating wide NUL character.
+
+p       The void * pointer argument is printed in hexadecimal (as if by
+       `%#x' or `%#lx').
+
+f		Decimal floating point, lowercase
+F		Decimal floating point, uppercase
+e		Scientific notation (mantissa/exponent), lowercase
+E		Scientific notation (mantissa/exponent), uppercase
+g		Use the shortest representation: %e or %f
+G		Use the shortest representation: %E or %F
+a		Hexadecimal floating point, lowercase	
+A		Hexadecimal floating point, uppercase
+
+n       The number of characters written so far is stored into the integer
+	    indicated by the int * (or variant) pointer argument.  No argument
+	    is converted.
+
+%       A `%' is written.  No argument is converted.  The complete conver-
+        sion specification is `%%'.
+		this type doesn't accept any flags, width, precision, length fields
+
+_______________________________________________________________________________
+
+RETURN VALUES
+These functions return the number of characters printed (not including the trailing `\0' 
+used to end output to strings).
+These functions return a negative value if an error occurs.
+
+
+NOTE SUR LE COMPORTEMENT DE PRINTF
+
+\   -   escape the next character
+"   -   start or end of string
+’   -   start or end a character constant
+%   -   start a format specification
+\\  -   print a backslash
+\"  -   print a double quote
+\’  -   print a single quote
+%%  -   print a percent sign
+
+("gjhg \0 k;lk;lk" )  -> stop au \0
+("gjhg %c", '\0' == 0 != '0')  -> 0 == @^ signe illisible du \0
+c = 0 || c = '\0'
+c = 8 || c= '\n'
+c = 48 || c= '0'
+
+
+//	int 				min_int 	= -2147483648;
+//	int 				max_int 	= 2147483647;
+//	int 				mxp_int 	= 2147483648;
+//	int					zer_int		= 0;
+//	int					one_int		= -1;
+//
+//	unsigned int		min_u_int 	= 0;
+//	unsigned int		max_u_int 	= 4294967295;
+//	unsigned int		mxp_u_int 	= 4294967296;
+//	unsigned int		zer_u_int	= 0;
+//	unsigned int		one_u_int	= -1;
+//
+//	long 				min_long 	= -2147483648;
+//	long 				max_long 	= 2147483647;
+//	long				zer_long	= 0;
+//
+//	unsigned long 		min_u_long 	= 0;
+//	unsigned long 		max_u_long 	= 4294967295;
+//	unsigned long		zer_u_long	= 0;
+//
+//	long long			min_llong 	= -9223372036854775808;
+//	long long			max_llong 	= 9223372036854775807;
+//	long long			mxp_llong 	= 9223372036854775808;
+//	long long			zer_llong 	= 0;
+//	long long			one_llong 	= -1;
+//
+//	unsigned long long	min_u_llong = 0;
+//	unsigned long long	max_u_llong = 18446744073709551616;
+//	unsigned long long	mxp_u_llong = 18446744073709551617;
+//	unsigned long long	zer_u_llong	= 0;
+//	unsigned long long	one_u_llong	= -1;
+
+/* 
+MODELE POUR TESTER VALEUR
+							ft_printf("FT %%d : %d", );
+	printf("\nret : %d\n", 	   printf("PR %%d : %d", ));
+							ft_printf("FT %%D : %D", );		
+	printf("\nret : %d\n", 	   printf("PR %%D : %D", ));		
+							ft_printf("FT %%i : %i", );
+	printf("\nret : %d\n", 	   printf("PR %%i : %i", ));
+							ft_printf("FT %%o : %o", );
+	printf("\nret : %d\n", 	   printf("PR %%o : %o", ));
+							ft_printf("FT %%O : %O", );
+	printf("\nret : %d\n", 	   printf("PR %%O : %O", ));
+							ft_printf("FT %%u : %u", );
+	printf("\nret : %d\n", 	   printf("PR %%u : %u", ));
+							ft_printf("FT %%U : %U", );
+	printf("\nret : %d\n", 	   printf("PR %%U : %U", ));
+							ft_printf("FT %%x : %x", );
+	printf("\nret : %d\n", 	   printf("PR %%x : %x", ));
+							ft_printf("FT %%X : %X", );
+	printf("\nret : %d\n", 	   printf("PR %%X : %X", ));
+printf("\n"); 									
+*/
