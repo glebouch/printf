@@ -14,7 +14,7 @@
 
 void	ft_line_signed(t_stringinfo *t, int i)
 {
-	if((t->len = ft_strlen(ft_longtoa((long int)nbr))) < t->sizemin)
+	if((t->len = ft_strlen(ft_sizetoa(()nbr))) < t->sizemin)
 		t->len = t->sizemin;
 	t->line = ft_strnew(t->len);
 	if 
@@ -24,30 +24,26 @@ void	ft_line_signed(t_stringinfo *t, int i)
 void	ft_line_unsigned(t_stringinfo *t, int i)
 {
 	int i = 0;
-	int j = 0;
-	char *str;
+	int len = 0;
 
-	str = ft_strdup(ft_sizetoa((size_t)nbr));
-	if((t->len = ft_strlen(str)) < t->sizemin)
-		t->len = t->sizemin;
-	t->line = ft_strnew(t->len);
-	i = (t->aligne) ? 0 : ft_strlen(str);
-	while (j < i)
+	len = ft_size((size_t)nbr);
+	if (t->space && t->precision > t->sizemin)
+		t->len = 1;
+//	if (t->precision > len)
+//		t->precision -= len;
+	t->precision = (t->precision > len) ? t->precision - len : 0;
+//	if (t->sizemin > t->precision + len)
+//		t->sizemin -= t->precision + len;
+	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
+	t->len += t->sizemin + t->precision + len;
+	if (!t->aligne_g)
 	{
-		if (t->zeros)
-			t->line[j] = '0';
-		else
-			t->line[j] = ' ';
-		j++;
+		while (t->sizemin-- > 0)
+			ft_putchar(' ');
 	}
-	if (t->space || t->sign)
-		t->line[j] = (t->space) ? ' ' : '+';
-	j++;
-	i = 0;
-	while (str[i])
-	{
-		t->line[j] = str[i];
-		i++;
-		j++:
-	}
+	while (t->precision-- > 0)
+		ft_putchar('0');
+
+
+
 }

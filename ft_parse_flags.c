@@ -18,42 +18,6 @@
 **
 */
 
-/*
-int ft_flag(t_stringinfo *t, char current)
-{
-	if (current == '#')
-		return(HASHTAG);
-	if (current == '0')
-		return(ZERO);
-	if (current == '-')
-		return(MINUS);
-	if (current == ' ')
-		return(SPACE);
-	if (current == '+')
-		return(PLUS);
-}
-
-int ft_double_flag(t_strinfo *t, char current)
-{
-	print("y a deux flags pareils");
-	return(ERROR);
-}
-
-int ft_parse_flags(t_stringinfo *t)
-{
-	int current;
-	char flag;
-
-	while ((current = ft_current_char(t)) && (t->flags == ft_flag(t, current)))
-	{
-		if (*t->flags)
-			return (ft_fouble_flag(t, current))
-		*flag = 1;
-		t->n_char++;
-	}
-	return(OKAY);
-}
-*/
 void	ft_flags_conversion(t_stringinfo *t)
 {
 	int conv = 0;
