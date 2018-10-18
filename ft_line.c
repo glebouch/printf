@@ -12,28 +12,23 @@
 
 #include "ft_printf.h"
 
-void	ft_line_signed(t_stringinfo *t, int i)
+void	ft_putuintmax_t_fd(uintmax_t n, int fd)
 {
-	if((t->len = ft_strlen(ft_sizetoa(()nbr))) < t->sizemin)
-		t->len = t->sizemin;
-	t->line = ft_strnew(t->len);
-	if 
-
+	if ((n / 10) != 0)
+		ft_putnbr_fd(n / 10, fd);
+	ft_putchar_fd((n % 10) + '0', fd);
 }
+
 
 void	ft_line_unsigned(t_stringinfo *t, int i)
 {
 	int i = 0;
-	int len = 0;
+	int len;
 
 	len = ft_size((size_t)nbr);
 	if (t->space && t->precision > t->sizemin)
 		t->len = 1;
-//	if (t->precision > len)
-//		t->precision -= len;
 	t->precision = (t->precision > len) ? t->precision - len : 0;
-//	if (t->sizemin > t->precision + len)
-//		t->sizemin -= t->precision + len;
 	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
 	t->len += t->sizemin + t->precision + len;
 	if (!t->aligne_g)
@@ -43,7 +38,10 @@ void	ft_line_unsigned(t_stringinfo *t, int i)
 	}
 	while (t->precision-- > 0)
 		ft_putchar('0');
-
-
-
+	ft_putuintmax_t_fd(nbr, 1);
+	if (t->aligne_g)
+	{
+		while (t->sizemin-- > 0)
+			ft_putchar(' ');
+	}
 }
