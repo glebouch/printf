@@ -57,6 +57,10 @@ typedef struct s_stringinfo
 	int			sizemin;
 	int			len;
 	char		*str;
+	intmax_t	nbr;
+	uintmax_t	unbr;
+	wchar_t		*string;
+	wchar_t		ch;
 	va_list		ap;
 
 
@@ -65,6 +69,8 @@ typedef struct s_stringinfo
 char *ft_strndup (const char *line, size_t i);
 void	ft_parse_flags(t_stringinfo *t);
 void	ft_parse_specifier(t_stringinfo *t);
+void	ft_unsigned2(t_stringinfo *t);
+
 /*
 typedef struct	s_s
 {

@@ -20,58 +20,60 @@
 
 int	ft_signed(t_stringinfo *t)
 {
-	intmax_t nbr;
+//	intmax_t nbr;
 	if (*t->str == 'd' || *t->str == 'i')
 	{
-		nbr = va_arg(t->ap, int);
-		if ((t->len = ft_strlen(ft_itoa(nbr))) < t->sizemin)
+		t->nbr = va_arg(t->ap, int);
+		if ((t->len = ft_strlen(ft_itoa(t->nbr))) < t->sizemin)
 			t->len = t->sizemin;
 	}
 	else
-		nbr = va_arg(t->ap, long int);
+		t->nbr = va_arg(t->ap, long int);
 	return(1);
 }
 
 int	ft_unsigned(t_stringinfo *t)
 {
-	uintmax_t unbr;
+//	uintmax_t unbr;
 	if (t->conversion == 3 || *t->str == 'O' || *t->str == 'U' || *t->str == 'p')
-		unbr = va_arg(t->ap, unsigned long int);
+		t->unbr = va_arg(t->ap, unsigned long int);
 	else if (t->conversion == 1)
-		unbr = (unsigned char)va_arg(t->ap, unsigned int);
+		t->unbr = (unsigned char)va_arg(t->ap, unsigned int);
 	else if (t->conversion == 2)
-		unbr = (unsigned short)va_arg(t->ap, unsigned int);
+		t->unbr = (unsigned short)va_arg(t->ap, unsigned int);
 	else if (t->conversion == 4)
-		unbr = va_arg(t->ap, unsigned long long);
+		t->unbr = va_arg(t->ap, unsigned long long);
 	else if (t->conversion == 5)
-		unbr = va_arg(t->ap, uintmax_t);
+		t->unbr = va_arg(t->ap, uintmax_t);
 	else if (t->conversion == 6)
-		unbr = va_arg(t->ap, size_t);
+		t->unbr = va_arg(t->ap, size_t);
 	else if (t->conversion == 0)
-		unbr = va_arg(t->ap, int);
+		t->unbr = va_arg(t->ap, int);
+	ft_unsigned2(t);
 	return (2);
 }
 
 int	ft_str(t_stringinfo *t)
 {
-	wchar_t *string;
-	string = va_arg(t->ap, wchar_t *);
+//	wchar_t *string;
+	t->string = va_arg(t->ap, wchar_t *);
 	return (3);
 }
 
 int	ft_char(t_stringinfo *t)
 {
-	wchar_t nbr;
+//	wchar_t ch;
 	if (t->conversion == 3 || *t->str == 'C')
-		nbr = (wchar_t)va_arg(t->ap, int);
+		t->ch = (wchar_t)va_arg(t->ap, int);
 	else if (*t->str == 'c')
-		nbr = (char)va_arg(t->ap, int);
+		t->ch = (char)va_arg(t->ap, int);
 	return (4);
 }
 
 void ft_parse_specifier(t_stringinfo *t)
 {
 	int i;
+	ft_putstr("tototo\n");
 	if (ft_strchr("Ddi", *t->str))
 		i = ft_signed(t);
 	else if (ft_strchr("oOuUxXp", *t->str))
@@ -80,7 +82,6 @@ void ft_parse_specifier(t_stringinfo *t)
 		i = ft_str(t);
 	else if (*t->str == 'c' || *t->str == 'C')
 		i = ft_char(t);
-	ft_create_fill_line(t, i);
 }
 
 //OUp -> ne peut pas etre converti

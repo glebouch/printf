@@ -60,6 +60,7 @@ int ft_printf(char *str, ...)
 	t_stringinfo t;
 	int ret;
 
+	ft_bzero((void *)&t, sizeof(t));
 	t.str = str;
 	t.line = ft_strnew(0);
 	va_start(t.ap, str);
@@ -71,8 +72,16 @@ int ft_printf(char *str, ...)
 
 int main (void)
 {
+//	int a = 10;
 //	char *str = "toto d";
-	ft_printf("%toto\n");
+	ft_printf("%+24.14o\n", 1567567);
+	printf("%24.14o\n", 1567567);
+//	ft_printf("%O\n", 1567567);
+//	ft_printf("%u\n", 1567567);
+//	ft_printf("%U\n", 1567567);
+//	ft_printf("%x\n", 1567567);
+//	ft_printf("%X\n", 1567567);
+//	ft_printf("%p\n", &a);
 //	printf("%%%% toto");
 	return (0);
 }

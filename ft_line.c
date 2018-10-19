@@ -12,20 +12,40 @@
 
 #include "ft_printf.h"
 
-void	ft_putuintmax_t_fd(uintmax_t n, int fd)
+static int	ft_size(uintmax_t n)
 {
-	if ((n / 10) != 0)
-		ft_putnbr_fd(n / 10, fd);
-	ft_putchar_fd((n % 10) + '0', fd);
+	int	size;
+
+	size = 1;
+	while (n / 10)
+	{
+		size++;
+		n = n / 10;
+	}
+	return (size);
 }
 
-
-void	ft_line_unsigned(t_stringinfo *t, int i)
+void	ft_putnbr_base(uintmax_t n, int base, int maj, int neg)
 {
-	int i = 0;
-	int len;
+	char *tab;
 
-	len = ft_size((size_t)nbr);
+	if (neg)
+		write(1, "-", 1);
+	if (maj)
+		tab = "0123456789ABCDEF";
+	else
+		tab = "0123456789abcdef";
+	if ((n / base) != 0)
+		ft_putnbr_base(n / base, base, maj, 0);
+	ft_putchar(tab[n % base]);
+}
+
+void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
+{
+	int len;
+	ft_putstr("passe par print\n");
+
+	len = ft_size((size_t)t->unbr);
 	if (t->space && t->precision > t->sizemin)
 		t->len = 1;
 	t->precision = (t->precision > len) ? t->precision - len : 0;
@@ -38,10 +58,29 @@ void	ft_line_unsigned(t_stringinfo *t, int i)
 	}
 	while (t->precision-- > 0)
 		ft_putchar('0');
-	ft_putuintmax_t_fd(nbr, 1);
+	ft_putnbr_base(t->unbr, base, maj, 0);
 	if (t->aligne_g)
 	{
 		while (t->sizemin-- > 0)
 			ft_putchar(' ');
 	}
+}
+
+void	ft_unsigned2(t_stringinfo *t)
+{
+	if (*t->str == 'o')
+		ft_line_unsigned(t, 8, 0);
+	if (*t->str == 'O')
+		ft_line_unsigned(t, 8, 1);
+	if (*t->str == 'u')
+		ft_line_unsigned(t, 10, 0);
+	if (*t->str == 'U')
+		ft_line_unsigned(t, 10, 0);
+	if (*t->str == 'x')
+		ft_line_unsigned(t, 16, 0);
+	if (*t->str == 'X')
+		ft_line_unsigned(t, 16, 1);
+	if (*t->str == 'p')
+		ft_line_unsigned(t, 16, 0);
+
 }
