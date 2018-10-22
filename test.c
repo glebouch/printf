@@ -50,6 +50,7 @@ int		ft_start(t_stringinfo *t)
 			ft_percent(t);
 		t->str++;
 //		ft_putendl(str);
+
 	}
 
 	return (0);
@@ -74,8 +75,8 @@ int main (void)
 {
 //	int a = 10;
 //	char *str = "toto d";
-	ft_printf("%+24.14o\n", 1567567);
-	printf("%24.14o\n", 1567567);
+	ft_printf("%#24O\n", 1567567);
+	printf("%#24lo\n", 1567567);
 //	ft_printf("%O\n", 1567567);
 //	ft_printf("%u\n", 1567567);
 //	ft_printf("%U\n", 1567567);

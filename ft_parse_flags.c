@@ -63,6 +63,7 @@ void	ft_flags_ponct(t_stringinfo *t)
 	{
 		t->str++;
 		t->precision = ft_atoi(t->str);
+		t->zeros = 0;
 		ft_putstr(t->str);
 		t->str += ft_strlen(ft_itoa(t->precision)) - 1;
 		ft_putstr(t->str);

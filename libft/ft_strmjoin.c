@@ -15,11 +15,6 @@
 char	*ft_strmjoin(char *s1, char *s2, int tofree)
 {
 	char	*back;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
 	if (!(back = ft_strjoin(s1, s2)))
 		return (NULL);
 	if (s1 && tofree % 2)

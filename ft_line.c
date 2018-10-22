@@ -40,6 +40,16 @@ void	ft_putnbr_base(uintmax_t n, int base, int maj, int neg)
 	ft_putchar(tab[n % base]);
 }
 
+void ft_prefix(t_stringinfo *t, int base, int maj)
+{
+	if (base == 8)
+		ft_putchar('0');
+	else if (base == 16 && maj)
+		ft_putstr("0X");
+	else if (base == 16)
+		ft_putstr("0x");
+}
+
 void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 {
 	int len;
@@ -53,9 +63,17 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 	t->len += t->sizemin + t->precision + len;
 	if (!t->aligne_g)
 	{
+		if(t->prefixe)
+			t->sizemin--;
 		while (t->sizemin-- > 0)
-			ft_putchar(' ');
+		{
+			if(t->zeros)
+				ft_putchar('0');
+			else
+				ft_putchar(' ');
+		}
 	}
+	ft_prefix(t, base, maj);
 	while (t->precision-- > 0)
 		ft_putchar('0');
 	ft_putnbr_base(t->unbr, base, maj, 0);
@@ -72,9 +90,7 @@ void	ft_unsigned2(t_stringinfo *t)
 		ft_line_unsigned(t, 8, 0);
 	if (*t->str == 'O')
 		ft_line_unsigned(t, 8, 1);
-	if (*t->str == 'u')
-		ft_line_unsigned(t, 10, 0);
-	if (*t->str == 'U')
+	if (*t->str == 'u' || *t->str == 'U')
 		ft_line_unsigned(t, 10, 0);
 	if (*t->str == 'x')
 		ft_line_unsigned(t, 16, 0);

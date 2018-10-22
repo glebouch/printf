@@ -12,9 +12,10 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-#include "libft/libft.h"
+#include "libft/includes/libft.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdint.h>
 
 # define ERROR 0;
 # define OKAY 1;

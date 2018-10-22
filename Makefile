@@ -30,7 +30,7 @@ mlib :
 $(NAME) : $(OBJ)
 	gcc $(CFLAGS) -o $(NAME) $^ $(LIB)
 
-%.o : %.c fdf.h
+%.o : %.c
 	gcc -c $< -I $(INCLUDES)
 
 clean :
