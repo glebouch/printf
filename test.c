@@ -25,6 +25,13 @@ const char	*ft_ctoa(char c, int i)
 	}
 	return (str);
 }
+/*void ft_backslash(t_stringinfo *t)
+{
+	t->str++;
+	if (*t->str == '\\' || *t->str == '\"' || *t->str == '\'' || *t->str == '')
+
+	if (*t->str == 't' || *t->str == 'n' || *t->str == 'r' || *t->str == '0')
+}*/
 
 void	ft_percent(t_stringinfo *t)
 {
@@ -32,22 +39,24 @@ void	ft_percent(t_stringinfo *t)
 	if (ft_strchr("123456789-+0 #.sSpdDioOuUxXcChljz", *t->str))
 		ft_parse_flags(t);
 	else
-		t->line = ft_strjoin(t->line, ft_ctoa(*t->str, 1));
+		ft_putchar(*t->str);
 }
 
 int		ft_start(t_stringinfo *t)
 {
-	char	current;
-
-	while ((current = *t->str) != '\0')
+	while (*t->str != '\0')
 	{
-		if (current != '%')
+		if (*t->str == '\%')
+			ft_putchar('%');
+		else if (*t->str == '%')
+			ft_percent(t);
+		else if (*t->str != '%')
 		{
-			t->line = ft_strjoin(t->line, ft_ctoa(current, 1));
+			ft_putchar(*t->str);
+//			t->line = ft_strjoin(t->line, ft_ctoa(current, 1));
 //			ft_putendl(t->line);
 		}
-		else
-			ft_percent(t);
+		
 		t->str++;
 //		ft_putendl(str);
 
@@ -73,10 +82,21 @@ int ft_printf(char *str, ...)
 
 int main (void)
 {
-//	int a = 10;
+	int a = 10;
 //	char *str = "toto d";
-	ft_printf("%#24O\n", 1567567);
-	printf("%#24lo\n", 1567567);
+	ft_printf("\"\t%0#24O\n", 1567567);
+	a = printf("\t%0#24lo\n", 1567567);
+	printf("a = %d\n", a);
+	printf("\ntoto\n");
+	ft_printf("\ntoto\n");
+	printf("\ttoto\n");
+	ft_printf("\ttoto\n");
+	printf("\rtoto\n");
+	ft_printf("\rtoto\n");
+	printf("\\\n");
+	ft_printf("\\\n");
+	printf("\"\'\%\n");
+	ft_printf("\"\'\%\n");
 //	ft_printf("%O\n", 1567567);
 //	ft_printf("%u\n", 1567567);
 //	ft_printf("%U\n", 1567567);
