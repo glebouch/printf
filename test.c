@@ -25,19 +25,16 @@ const char	*ft_ctoa(char c, int i)
 	}
 	return (str);
 }
-/*void ft_backslash(t_stringinfo *t)
-{
-	t->str++;
-	if (*t->str == '\\' || *t->str == '\"' || *t->str == '\'' || *t->str == '')
-
-	if (*t->str == 't' || *t->str == 'n' || *t->str == 'r' || *t->str == '0')
-}*/
 
 void	ft_percent(t_stringinfo *t)
 {
 	t->str++;
+	ft_init(t);
 	if (ft_strchr("123456789-+0 #.sSpdDioOuUxXcChljz", *t->str))
+	{
+//		ft_putstr("tamere\n");
 		ft_parse_flags(t);
+	}
 	else
 		ft_putchar(*t->str);
 }
@@ -46,20 +43,16 @@ int		ft_start(t_stringinfo *t)
 {
 	while (*t->str != '\0')
 	{
-		if (*t->str == '\%')
-			ft_putchar('%');
-		else if (*t->str == '%')
+//		if (*t->str == '\%')
+//			ft_putchar('%');
+		if (*t->str == '%')
 			ft_percent(t);
 		else if (*t->str != '%')
 		{
 			ft_putchar(*t->str);
-//			t->line = ft_strjoin(t->line, ft_ctoa(current, 1));
-//			ft_putendl(t->line);
+			t->ret++;
 		}
-		
 		t->str++;
-//		ft_putendl(str);
-
 	}
 
 	return (0);
@@ -72,12 +65,10 @@ int ft_printf(char *str, ...)
 
 	ft_bzero((void *)&t, sizeof(t));
 	t.str = str;
-	t.line = ft_strnew(0);
 	va_start(t.ap, str);
-	ret = ft_start(&t);
+	ft_start(&t);
 	va_end(t.ap);
-	ft_putstr(t.line);
-	return(ret);
+	return(t.ret);
 }
 
 int main (void)
@@ -85,18 +76,27 @@ int main (void)
 	int a = 10;
 //	char *str = "toto d";
 	ft_printf("\"\t%0#24O\n", 1567567);
-	a = printf("\t%0#24lo\n", 1567567);
+	a = printf("\"\t%0#24lo\n", 1567567L);
 	printf("a = %d\n", a);
-	printf("\ntoto\n");
-	ft_printf("\ntoto\n");
-	printf("\ttoto\n");
-	ft_printf("\ttoto\n");
-	printf("\rtoto\n");
-	ft_printf("\rtoto\n");
-	printf("\\\n");
-	ft_printf("\\\n");
-	printf("\"\'\%\n");
-	ft_printf("\"\'\%\n");
+	ft_printf("a = %d\n", a);
+	printf("a = \"%24.10d\"\n", -42);
+	ft_printf("a = \"%24.10d\"\n", -42);
+	printf("%+d\n", -34);
+	ft_printf("%+d\n", -34);
+	printf("%+d et %#o\n", -34, 89);
+	ft_printf("%+d et %#o\n", -34, 89);
+	printf("%-+itoto\n", -25);
+	ft_printf("%-+itoto\n", -25);
+	printf("%itoto\n", -36);
+	ft_printf("%itoto\n", -36);
+	printf("%d\n", 36);
+	ft_printf("%d\n", 36);
+	printf("%12toto\n", 356489);
+	printf("%12ttoto\n", 356489);
+	ft_printf("%12toto\n", 356489);
+
+//	printf("%s\n", "356489");
+//	ft_printf("%s\n", "356489");
 //	ft_printf("%O\n", 1567567);
 //	ft_printf("%u\n", 1567567);
 //	ft_printf("%U\n", 1567567);

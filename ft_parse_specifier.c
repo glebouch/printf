@@ -18,46 +18,15 @@
 **
 */
 
-int	ft_signed(t_stringinfo *t)
-{
-//	intmax_t nbr;
-	if (*t->str == 'd' || *t->str == 'i')
-	{
-		t->nbr = va_arg(t->ap, int);
-		if ((t->len = ft_strlen(ft_itoa(t->nbr))) < t->sizemin)
-			t->len = t->sizemin;
-	}
-	else
-		t->nbr = va_arg(t->ap, long int);
-	return(1);
-}
 
-int	ft_unsigned(t_stringinfo *t)
-{
-//	uintmax_t unbr;
-	if (t->conversion == 3 || *t->str == 'O' || *t->str == 'U' || *t->str == 'p')
-		t->unbr = va_arg(t->ap, unsigned long int);
-	else if (t->conversion == 1)
-		t->unbr = (unsigned char)va_arg(t->ap, unsigned int);
-	else if (t->conversion == 2)
-		t->unbr = (unsigned short)va_arg(t->ap, unsigned int);
-	else if (t->conversion == 4)
-		t->unbr = va_arg(t->ap, unsigned long long);
-	else if (t->conversion == 5)
-		t->unbr = va_arg(t->ap, uintmax_t);
-	else if (t->conversion == 6)
-		t->unbr = va_arg(t->ap, size_t);
-	else if (t->conversion == 0)
-		t->unbr = va_arg(t->ap, int);
-	ft_unsigned2(t);
-	return (2);
-}
 
-int	ft_str(t_stringinfo *t)
+void	ft_str(t_stringinfo *t)
 {
-//	wchar_t *string;
 	t->string = va_arg(t->ap, wchar_t *);
-	return (3);
+	while(*t->string++ != '\0')
+	{
+		ft_putstr((char*)t->string);
+	}
 }
 
 int	ft_char(t_stringinfo *t)
@@ -73,13 +42,13 @@ int	ft_char(t_stringinfo *t)
 void ft_parse_specifier(t_stringinfo *t)
 {
 	int i;
-	ft_putstr("tototo\n");
+//	ft_putstr("tototo\n");
 	if (ft_strchr("Ddi", *t->str))
-		i = ft_signed(t);
+		ft_signed(t);
 	else if (ft_strchr("oOuUxXp", *t->str))
-		i = ft_unsigned(t);
+		ft_unsigned(t);
 	else if (*t->str == 's' || *t->str == 'S')
-		i = ft_str(t);
+		ft_str(t);
 	else if (*t->str == 'c' || *t->str == 'C')
 		i = ft_char(t);
 }

@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <inttypes.h>
 
 # define ERROR 0;
 # define OKAY 1;
@@ -28,25 +29,9 @@
 # define STRING
 # define POINTER 
 
-
-
-/*typedef enum 	e_flags
-{
-	PLUS, MINUS, HASHTAG, SPACE, ZERO
-}				t_flags;
-
-typedef	enum	e_length
-{
-	DEFAULT, H, HH, J, L, LL, Z
-}				t_length;
-
-typedef enum	e_specifier
-{
-	S_DECIMAL, U_DECIMAL, U_HEXA, U_OCTAL, CHAR, STRING, POINTER, DEFAULT
-}				t_specifier;
-*/
 typedef struct s_stringinfo
 {
+	int			ret;
 	char		*line;
 	int			conversion;
 	int			space;
@@ -63,26 +48,15 @@ typedef struct s_stringinfo
 	wchar_t		*string;
 	wchar_t		ch;
 	va_list		ap;
-
-
 }				t_stringinfo;
 
-char *ft_strndup (const char *line, size_t i);
-void	ft_parse_flags(t_stringinfo *t);
-void	ft_parse_specifier(t_stringinfo *t);
-void	ft_unsigned2(t_stringinfo *t);
+char		*ft_strndup (const char *line, size_t i);
+void		ft_parse_flags(t_stringinfo *t);
+void		ft_parse_specifier(t_stringinfo *t);
+void		ft_unsigned(t_stringinfo *t);
+void		ft_signed(t_stringinfo *t);
+void		ft_init(t_stringinfo *t);
+int			ft_size(uintmax_t n);
+void		ft_putnbr_base(uintmax_t n, int base, int maj, int neg);
 
-/*
-typedef struct	s_s
-{
-	size_t width;
-	size_t precision;
-
-	t_specifier specifier;
-	t_length length;
-	t_width width;
-	t_flags flags;
-	char *line;
-}				t_s;
-*/
 #endif

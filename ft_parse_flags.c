@@ -46,7 +46,7 @@ void	ft_flags_conversion(t_stringinfo *t)
 
 void	ft_flags_ponct(t_stringinfo *t)
 {
-	ft_putstr("passe par ponctuation\n");
+//m	ft_putstr("passe par ponctuation\n");
 	if (*t->str == '-')
 	{
 		t->aligne_g = 1;
@@ -64,9 +64,9 @@ void	ft_flags_ponct(t_stringinfo *t)
 		t->str++;
 		t->precision = ft_atoi(t->str);
 		t->zeros = 0;
-		ft_putstr(t->str);
+//		ft_putstr(t->str);
 		t->str += ft_strlen(ft_itoa(t->precision)) - 1;
-		ft_putstr(t->str);
+//		ft_putstr(t->str);
 	}
 }
 
@@ -82,7 +82,7 @@ void	ft_parse_flags(t_stringinfo *t)
 		{
 			t->sizemin = atoi(t->str);
 			t->str += ft_strlen(ft_itoa(t->precision));
-			ft_putstr(t->str);
+//			ft_putstr(t->str);
 		}
 		else if (ft_strchr("-+ .", *t->str))
 			ft_flags_ponct(t);
@@ -90,8 +90,8 @@ void	ft_parse_flags(t_stringinfo *t)
 			ft_flags_conversion(t);
 		t->str++;
 	}
-	ft_putstr("lalalala\n");
-	ft_putstr(t->str);
+//	ft_putstr("lalalala\n");
+//	ft_putstr(t->str);
 	if (ft_strchr("sSpdDioOuUxXcC", *t->str))
 		ft_parse_specifier(t);
 }
