@@ -8,7 +8,7 @@ void ft_signed2(t_stringinfo *t)
 	int len;
 //	ft_putstr("passe par print\n");
 
-	len = ft_size((size_t)imaxabs((intmax_t)t->nbr));
+	len = ft_size_base((size_t)imaxabs((intmax_t)t->nbr), 10);
 	if (t->space && t->precision > t->sizemin)
 		t->len = 1;
 	t->precision = (t->precision > len) ? t->precision - len : 0;

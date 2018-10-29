@@ -1,16 +1,17 @@
 
 #include "ft_printf.h"
 
-void ft_prefix(t_stringinfo *t, int base, int maj)
+int ft_prefix(t_stringinfo *t, int base, int maj)
 {
 	if (!t->prefixe)
-		exit(-1);
+		return(0);
 	if (base == 8)
 		ft_putchar('0');
 	else if (base == 16 && maj)
 		ft_putstr("0X");
 	else if (base == 16)
 		ft_putstr("0x");
+	return (0);
 }
 
 void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
@@ -18,7 +19,7 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 	int len;
 //	ft_putstr("passe par print\n");
 
-	len = ft_size((size_t)t->unbr);
+	len = ft_size_base((size_t)t->unbr, base);
 	if (t->space && t->precision > t->sizemin)
 		t->len = 1;
 	t->precision = (t->precision > len) ? t->precision - len : 0;
@@ -27,6 +28,8 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 	if (!t->aligne_g)
 	{
 		if(t->prefixe)
+			t->sizemin--;
+		if(t->prefixe && base == 16)
 			t->sizemin--;
 		while (t->sizemin-- > 0)
 		{

@@ -12,7 +12,7 @@
 
 NAME = exe
 
-SRC = test.c ft_parse_flags.c ft_parse_specifier.c ft_line.c
+SRC = test.c ft_parse_flags.c ft_parse_specifier.c ft_line.c unsigned.c signed.c
 
 OBJ = $(SRC:.c=.o)
 

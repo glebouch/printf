@@ -94,4 +94,5 @@ void	ft_parse_flags(t_stringinfo *t)
 //	ft_putstr(t->str);
 	if (ft_strchr("sSpdDioOuUxXcC", *t->str))
 		ft_parse_specifier(t);
+//	else
 }

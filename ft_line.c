@@ -25,6 +25,13 @@ int	ft_size(uintmax_t n)
 	return (size);
 }
 
+int	ft_size_base(uintmax_t n, int base)
+{
+	if ((n / base) != 0)
+		return (ft_size_base(n / base, base) + 1);
+	return (1);
+}
+
 void	ft_putnbr_base(uintmax_t n, int base, int maj, int neg)
 {
 	char *tab;
