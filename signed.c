@@ -38,6 +38,7 @@ void ft_signed2(t_stringinfo *t)
 		while (t->sizemin-- > 0)
 			ft_putchar(' ');
 	}
+	t->ret += t->len;
 }
 
 

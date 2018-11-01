@@ -19,7 +19,6 @@
 */
 
 
-
 void	ft_str(t_stringinfo *t)
 {
 	t->string = va_arg(t->ap, wchar_t *);
@@ -29,15 +28,52 @@ void	ft_str(t_stringinfo *t)
 	}
 }
 
+void	ft_line_char(t_stringinfo *t)
+{
+	int len;
+//	ft_putstr("passe par print\n");
+
+	len = ft_size_base((size_t)t->unbr, base);
+	if (t->space && t->precision > t->sizemin)
+		t->len = 1;
+	t->precision = (t->precision > len) ? t->precision - len : 0;
+	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
+	t->len += t->sizemin + t->precision + len;
+	if (!t->aligne_g)
+	{
+		if(t->prefixe)
+			t->sizemin--;
+		if(t->prefixe && base == 16)
+			t->sizemin--;
+		while (t->sizemin-- > 0)
+		{
+			if(t->zeros)
+				ft_putchar('0');
+			else
+				ft_putchar(' ');
+		}
+	}
+	ft_prefix(t, base, maj);
+	while (t->precision-- > 0)
+		ft_putchar('0');
+	ft_putnbr_base(t->unbr, base, maj, 0);
+	if (t->aligne_g)
+	{
+		while (t->sizemin-- > 0)
+			ft_putchar(' ');
+	}
+	t->ret += t->len;
+}
+
 void	ft_char(t_stringinfo *t)
 {
-//	wchar_t ch;
 	if (*t->str != 'c' && *t->str != 'C')
-		t->ch = *t->str;
+		t->unbr = *t->str;
 	else if (t->conversion == 3 || *t->str == 'C')
-		t->ch = (wchar_t)va_arg(t->ap, int);
+		t->unbr = (unsigned int)va_arg(t->ap, unsigned int);
 	else if (*t->str == 'c')
-		t->ch = (char)va_arg(t->ap, int);
+		t->unbr = (unsigned int)va_arg(t->ap, unsigned int);
+	ft_line_char(t);
 }
 
 void ft_parse_specifier(t_stringinfo *t)

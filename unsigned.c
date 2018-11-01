@@ -48,6 +48,7 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 		while (t->sizemin-- > 0)
 			ft_putchar(' ');
 	}
+	t->ret += t->len;
 }
 void	ft_unsigned2(t_stringinfo *t)
 {

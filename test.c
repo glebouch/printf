@@ -73,7 +73,7 @@ int ft_printf(char *str, ...)
 
 int main (void)
 {
-	int a = 10;
+	int a;
 //	char *str = "toto d";
 //	ft_printf("\"\t%0#24O\n", 1567567);
 //	a = printf("\"\t%0#24lo\n", 1567567L);
@@ -91,11 +91,14 @@ int main (void)
 //	ft_printf("%itoto\n", -36);
 //	printf("%d\n", 36);
 //	ft_printf("%d\n", 36);
-	printf("%12kto\n", 356489);
-	printf("%12ktoto\n", 356489);
-	ft_printf("%12ktoto\n", 356489);
-	printf("[%#10o]\n", 356489);
-	ft_printf("[%#10o]\n", 356489);
+	a = printf("%12d\n", 356489);
+	ft_putnbr(a);
+	a = ft_printf("%12d\n", 356489);
+	ft_putnbr(a);
+	a = printf("%12k\n", -356489);
+	ft_putnbr(a);
+	a = ft_printf("%12k\n", -356489);
+	ft_putnbr(a);
 
 //	printf("%s\n", "356489");
 //	ft_printf("%s\n", "356489");
