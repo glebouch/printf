@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_specifier.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glebouch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: glebouch <glebouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 15:37:39 by glebouch          #+#    #+#             */
-/*   Updated: 2018/05/18 15:37:41 by glebouch         ###   ########.fr       */
+/*   Updated: 2018/11/01 18:18:51 by glebouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,19 @@ void	ft_str(t_stringinfo *t)
 	}
 }
 
+/*void	ft_putchar_unicode(t_stringinfo *t)
+{
+
+}
+
 void	ft_line_char(t_stringinfo *t)
 {
 	int len;
-//	ft_putstr("passe par print\n");
 
-	len = ft_size_base((size_t)t->unbr, base);
-	if (t->space && t->precision > t->sizemin)
-		t->len = 1;
-	t->precision = (t->precision > len) ? t->precision - len : 0;
-	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
-	t->len += t->sizemin + t->precision + len;
+	t->sizemin = (t->sizemin > len) ? t->sizemin - len : 0;
+	t->len += t->sizemin + len;
 	if (!t->aligne_g)
 	{
-		if(t->prefixe)
-			t->sizemin--;
-		if(t->prefixe && base == 16)
-			t->sizemin--;
 		while (t->sizemin-- > 0)
 		{
 			if(t->zeros)
@@ -53,17 +49,17 @@ void	ft_line_char(t_stringinfo *t)
 				ft_putchar(' ');
 		}
 	}
-	ft_prefix(t, base, maj);
-	while (t->precision-- > 0)
-		ft_putchar('0');
-	ft_putnbr_base(t->unbr, base, maj, 0);
+	if (t->unbr > 127)
+		ft_putchar(t->unbr);
+	else
+		ft_putchar_unicode(t);
 	if (t->aligne_g)
 	{
 		while (t->sizemin-- > 0)
 			ft_putchar(' ');
 	}
 	t->ret += t->len;
-}
+}*/
 
 void	ft_char(t_stringinfo *t)
 {
@@ -73,7 +69,7 @@ void	ft_char(t_stringinfo *t)
 		t->unbr = (unsigned int)va_arg(t->ap, unsigned int);
 	else if (*t->str == 'c')
 		t->unbr = (unsigned int)va_arg(t->ap, unsigned int);
-	ft_line_char(t);
+//	ft_line_char(t);
 }
 
 void ft_parse_specifier(t_stringinfo *t)

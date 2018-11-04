@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glebouch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: glebouch <glebouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 15:37:00 by glebouch          #+#    #+#             */
-/*   Updated: 2018/05/18 15:37:09 by glebouch         ###   ########.fr       */
+/*   Updated: 2018/11/01 19:05:36 by glebouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 **
-** %[flags] == #, 0, -, ' ', +; 
+** %[flags] == #, 0, -, ' ', +;
 **
 */
 
@@ -46,7 +46,7 @@ void	ft_flags_conversion(t_stringinfo *t)
 
 void	ft_flags_ponct(t_stringinfo *t)
 {
-//m	ft_putstr("passe par ponctuation\n");
+//	ft_putstr("passe par ponctuation\n");
 	if (*t->str == '-')
 	{
 		t->aligne_g = 1;
@@ -74,6 +74,8 @@ void	ft_parse_flags(t_stringinfo *t)
 {
 	while (ft_strchr("-+0 #.hljz123456789", *t->str))
 	{
+//		ft_putstr(t->str);
+//		ft_putendl("coucou");
 		if (*t->str == '#')
 			t->prefixe = 1;
 		else if (*t->str == '0' && t->aligne_g == 0 && t->precision >= 0)
@@ -81,8 +83,8 @@ void	ft_parse_flags(t_stringinfo *t)
 		else if (ft_isdigit(*t->str))
 		{
 			t->sizemin = atoi(t->str);
-			t->str += ft_strlen(ft_itoa(t->precision));
-//			ft_putstr(t->str);
+			while (ft_isdigit(*(t->str + 1)))
+			t->str++;
 		}
 		else if (ft_strchr("-+ .", *t->str))
 			ft_flags_ponct(t);

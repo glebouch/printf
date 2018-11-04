@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: glebouch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: glebouch <glebouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 14:35:35 by glebouch          #+#    #+#             */
-/*   Updated: 2017/12/20 14:39:58 by glebouch         ###   ########.fr       */
+/*   Updated: 2018/11/01 18:23:52 by glebouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,51 @@ int main (void)
 	a = ft_printf("%12k\n", -356489);
 	ft_putnbr(a);
 
+	a = printf("\ntoto[%-4 d]\n", 123456);
+	ft_putnbr(a);
+	a = printf("\ntoto[%-12.14 d]\n", 15);
+	ft_putnbr(a);
+	a = printf("\ntoto[%-12.14d]\n", -15);
+	ft_putnbr(a);
+	a = printf("\ntoto[%-12.14d]\n", 15);
+	ft_putnbr(a);
+	a = printf("\ntoto[%+12.14 d]\n", -15);
+	ft_putnbr(a);
+	a = printf("\ntoto[%12 d]\n", -15);
+	ft_putnbr(a);
+	a = printf("\ntoto[%012 d]\n", 15);
+	ft_putnbr(a);
+	a = printf("\ntoto[% #.8x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\ntoto[%012d]\n", 15);
+	ft_putnbr(a);
+	a = printf("\ntoto[%- d]\n", 15);
+	ft_putnbr(a);
+	a = printf("\ntoto[% d]\n", 15);
+
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[%-4 d]\n", 123456);
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[%-12.14 d]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[%-12.14d]\n", -15);
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[%-12.14d]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[%+12.14 d]\n", -15);
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[%12 d]\n", -15);
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[%012 d]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[% #.8x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[%012d]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[%- d]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\ntoto[% d]\n", 15);
+
 //	printf("%s\n", "356489");
 //	ft_printf("%s\n", "356489");
 //	ft_printf("%O\n", 1567567);
@@ -117,15 +162,15 @@ d i
 o u x X
 
 hh h l ll j z
- 
+
 
 c
-s 
-C 
-S 
-p 
- 
- 
+s
+C
+S
+p
+
+
 %
 
 D O U*/
