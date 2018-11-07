@@ -21,7 +21,7 @@ void ft_signed2(t_stringinfo *t)
 	len = ft_size_base((size_t)imaxabs((intmax_t)t->nbr), 10);
 //	if (t->space && t->nbr >= 0 && !t->signe)
 //		t->len = 1;
-	if(t->precision == 0)
+	if(t->precision == 0 && t->nbr == 0)
 		precision_init_zero = 1;
 	t->precision = (t->precision > len) ? t->precision - len : 0;
 	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
@@ -53,7 +53,7 @@ void ft_signed2(t_stringinfo *t)
 	while (t->precision-- > 0)
 		ft_putchar('0');
 //	ft_putnbr(t->precision);
-	if (precision_init_zero == 1 && t->nbr == 0)
+	if (precision_init_zero == 1)
 		t->ret--;
 	else
 		ft_putnbr_base(imaxabs((intmax_t)t->nbr), 10, 0, 0);

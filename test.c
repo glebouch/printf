@@ -147,10 +147,10 @@ int main (void)
 	a = ft_printf("\ntoto[% d]\n", 15);
 */
 	setlocale(LC_ALL, "");
-	a = printf("\ntoto[%.0d]\n", 1298);
+	a = printf("\ntoto[%.0#x]\n", 3);
 	ft_putnbr(a);
 
-	a = ft_printf("\ntoto[%.0d]\n", 1298);
+	a = ft_printf("\ntoto[%.0#x]\n", 3);
 		ft_putnbr(a);
 
 /*  a = printf("[%12o]\n", 356489);

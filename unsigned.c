@@ -29,11 +29,14 @@ int ft_prefix(t_stringinfo *t, int base, int maj)
 void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 {
 	int len;
+	int precision_init_zero = 0;
 //	ft_putstr("passe par print\n");
 
 	len = ft_size_base((size_t)t->unbr, base);
 //	if (t->space && t->precision > t->sizemin)
 //		t->len = 1;
+	if(t->precision == 0 && t->unbr == 0)
+		precision_init_zero = 1;
 	t->precision = (t->precision > len) ? t->precision - len : 0;
 	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
 	t->len += t->sizemin + t->precision + len;
@@ -51,10 +54,16 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 				ft_putchar(' ');
 		}
 	}
-	ft_prefix(t, base, maj);
+//	ft_putendl("check");
+//	ft_putnbr(t->unbr);
+	if(t->unbr != 0)
+		ft_prefix(t, base, maj);
 	while (t->precision-- > 0)
 		ft_putchar('0');
-	ft_putnbr_base(t->unbr, base, maj, 0);
+	if (precision_init_zero)
+		t->ret--;
+	else
+		ft_putnbr_base(t->unbr, base, maj, 0);
 	if (t->aligne_g)
 	{
 		while (t->sizemin-- > 0)
