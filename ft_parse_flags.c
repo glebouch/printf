@@ -61,13 +61,16 @@ void	ft_flags_ponct(t_stringinfo *t)
 		t->space = 1;
 	else if (*t->str == '.')
 	{
-		t->str++;
+		t->str += (ft_isdigit(*(t->str + 1)) != 0) ? 1 : 0;
 		t->precision = ft_atoi(t->str);
 		t->zeros = 0;
 //		ft_putstr(t->str);
-		t->str += ft_strlen(ft_itoa(t->precision)) - 1;
+		if (t->precision)
+			t->str += ft_strlen(ft_itoa(t->precision)) - 1;
+//		ft_putchar('\n');
 //		ft_putstr(t->str);
 	}
+//	ft_putendl("fini ponct");
 }
 
 void	ft_parse_flags(t_stringinfo *t)
@@ -90,6 +93,7 @@ void	ft_parse_flags(t_stringinfo *t)
 			ft_flags_ponct(t);
 		else if (ft_strchr("hljz", *t->str))
 			ft_flags_conversion(t);
+//		ft_putendl("fini while");
 		t->str++;
 	}
 //	ft_putstr("lalalala\n");

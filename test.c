@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <locale.h>
 
 const char	*ft_ctoa(char c, int i)
 {
@@ -91,7 +92,7 @@ int main (void)
 //	ft_printf("%itoto\n", -36);
 //	printf("%d\n", 36);
 //	ft_printf("%d\n", 36);
-	a = printf("%12d\n", 356489);
+/*	a = printf("%12d\n", 356489);
 	ft_putnbr(a);
 	a = ft_printf("%12d\n", 356489);
 	ft_putnbr(a);
@@ -144,7 +145,102 @@ int main (void)
 	a = ft_printf("\ntoto[%- d]\n", 15);
 	ft_putnbr(a);
 	a = ft_printf("\ntoto[% d]\n", 15);
+*/
+	setlocale(LC_ALL, "");
+	a = printf("\ntoto[%.0d]\n", 1298);
+	ft_putnbr(a);
 
+	a = ft_printf("\ntoto[%.0d]\n", 1298);
+		ft_putnbr(a);
+
+/*  a = printf("[%12o]\n", 356489);
+	ft_putnbr(a);
+	a = printf("[%12lo]\n", 356489);
+	ft_putnbr(a);
+	a = printf("[%12x]\n", 356489);
+	ft_putnbr(a);
+	a = printf("[%12X]\n", 356489);
+	ft_putnbr(a);
+	a = printf("\n[%-4 x]\n", 123456);
+	ft_putnbr(a);
+//	a = printf("\n[%-12.14 X]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[%-12.14X]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[%-12.14x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[%+12.14 x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[%12 x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[%012 x]\n", 15);
+	ft_putnbr(a);
+//	a = printf("\n[% #.8x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[%012x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[%- x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[% x]\n", 15);
+	ft_putnbr(a);
+
+	a = ft_printf("[%12o]\n", 356489);
+	ft_putnbr(a);
+	a = ft_printf("[%12O]\n", 356489);
+	ft_putnbr(a);
+	a = ft_printf("[%12x]\n", 356489);
+	ft_putnbr(a);
+	a = ft_printf("[%12X]\n", 356489);
+	ft_putnbr(a);
+	a = ft_printf("\n[%-4 x]\n", 123456);
+	ft_putnbr(a);
+	a = ft_printf("\n[%-12.14 X]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[%-12.14X]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[%-12.14x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[%+12.14 x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[%12 x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[%012 x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[% #.8x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[%012x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[%- x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[% x]\n", 15);
+
+
+	printf("\n\n\n\n");
+	a = printf("\n[%#.8x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[% #.8x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[% #.1x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[% #.1x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[% .8x]\n", 15);
+	ft_putnbr(a);
+	a = printf("\n[% #.8x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[%#.8x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[% #.8x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[% #.1x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[% #.1x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[% .8x]\n", 15);
+	ft_putnbr(a);
+	a = ft_printf("\n[% #.8x]\n", 15);
+	ft_putnbr(a);
+*/
 //	printf("%s\n", "356489");
 //	ft_printf("%s\n", "356489");
 //	ft_printf("%O\n", 1567567);

@@ -54,7 +54,7 @@ void ft_init(t_stringinfo *t)
 	t->zeros = 0;
 	t->aligne_g = 0;
 	t->sign = 0;
-	t->precision = 0;
+	t->precision = -1;
 	t->prefixe = 0;
 	t->sizemin = 0;
 	t->len = 0;

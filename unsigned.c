@@ -22,6 +22,7 @@ int ft_prefix(t_stringinfo *t, int base, int maj)
 		ft_putstr("0X");
 	else if (base == 16)
 		ft_putstr("0x");
+	t->len += (base == 16) ? 2 : 1;
 	return (0);
 }
 
@@ -31,8 +32,8 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 //	ft_putstr("passe par print\n");
 
 	len = ft_size_base((size_t)t->unbr, base);
-	if (t->space && t->precision > t->sizemin)
-		t->len = 1;
+//	if (t->space && t->precision > t->sizemin)
+//		t->len = 1;
 	t->precision = (t->precision > len) ? t->precision - len : 0;
 	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
 	t->len += t->sizemin + t->precision + len;
