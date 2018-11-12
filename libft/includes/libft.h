@@ -88,5 +88,7 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_swap(int *a, int *b);
 int				get_next_line(int fd, char **line);
 char			*ft_sizetoa(size_t n);
+void			ft_putnstr(char const *s, int n);
+void			ft_putnstr_fd(char const *s, int n, int fd);
 
 #endif

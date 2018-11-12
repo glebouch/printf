@@ -45,7 +45,7 @@ typedef struct s_stringinfo
 	char		*str;
 	intmax_t	nbr;
 	uintmax_t	unbr;
-	wchar_t		*string;
+	char		*string;
 	wchar_t		ch;
 	va_list		ap;
 }				t_stringinfo;
@@ -55,9 +55,15 @@ void		ft_parse_flags(t_stringinfo *t);
 void		ft_parse_specifier(t_stringinfo *t);
 void		ft_unsigned(t_stringinfo *t);
 void		ft_signed(t_stringinfo *t);
+void		ft_char(t_stringinfo *t);
+void		ft_str(t_stringinfo *t);
 void		ft_init(t_stringinfo *t);
 int			ft_size(uintmax_t n);
 void		ft_putnbr_base(uintmax_t n, int base, int maj, int neg);
 int			ft_size_base(uintmax_t n, int base);
+void		ft_putchar_unicode(wchar_t caract, int oct);
+int 		ft_octet(wchar_t caract);
+int 		ft_oct_print(t_stringinfo *t, int nb_l_print);
+
 
 #endif

@@ -10,25 +10,25 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = exe
+NAME = libftprintf.a
 
-SRC = test.c ft_parse_flags.c ft_parse_specifier.c ft_line.c unsigned.c signed.c
+SRC = test.c ft_parse_flags.c ft_parse_specifier.c ft_line.c unsigned.c signed.c char.c string.c
 
 OBJ = $(SRC:.c=.o)
 
-LIB = -L ./libft/ -lft
+LIB = ./libft/libft.a 
 
 INCLUDES = printf.h
 
 CFLAGS = -Wall -Wextra -Werror -g3
 
-all : mlib $(NAME)
+all : $(NAME)
+
+$(NAME) : $(OBJ) mlib
+	libtool -static -o $@ $(LIB) $(OBJ)
 
 mlib :
 	@make -C ./libft/
-
-$(NAME) : $(OBJ)
-	gcc $(CFLAGS) -o $(NAME) $^ $(LIB)
 
 %.o : %.c
 	gcc -c $< -I $(INCLUDES)

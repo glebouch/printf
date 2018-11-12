@@ -79,9 +79,13 @@ void	ft_parse_flags(t_stringinfo *t)
 	{
 //		ft_putstr(t->str);
 //		ft_putendl("coucou");
+//	ft_putchar(*t->str);
+//		ft_putnbr(t->zeros);
+//		ft_putnbr(t->aligne_g);
+//		ft_putnbr(t->precision);
 		if (*t->str == '#')
 			t->prefixe = 1;
-		else if (*t->str == '0' && t->aligne_g == 0 && t->precision >= 0)
+		else if (*t->str == '0' && t->aligne_g == 0 && t->precision <= 0)
 			t->zeros = 1;
 		else if (ft_isdigit(*t->str))
 		{
@@ -100,5 +104,4 @@ void	ft_parse_flags(t_stringinfo *t)
 //	ft_putstr(t->str);
 	if (ft_strchr("sSpdDioOuUxXcC", *t->str))
 		ft_parse_specifier(t);
-//	else
 }

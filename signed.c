@@ -36,6 +36,13 @@ void ft_signed2(t_stringinfo *t)
 	}
 	if (t->space && t->nbr >= 0)
 		ft_putchar(' ');
+	if (t->zeros)
+	{
+		if (t->nbr < 0)
+			ft_putchar('-');
+		if (t->nbr >= 0 && t->sign == 1 && (*t->str == 'd' || *t->str == 'D'))
+			ft_putchar('+');
+	}
 	if (!t->aligne_g)
 	{
 		while (t->sizemin-- > 0)
@@ -46,10 +53,13 @@ void ft_signed2(t_stringinfo *t)
 				ft_putchar(' ');
 		}
 	}
-	if (t->nbr < 0)
-		ft_putchar('-');
-	if (t->nbr >= 0 && t->sign == 1 && *t->str == 'd')
-		ft_putchar('+');
+	if(!t->zeros)
+	{
+		if (t->nbr < 0)
+			ft_putchar('-');
+		if (t->nbr >= 0 && t->sign == 1 && (*t->str == 'd' || *t->str == 'D'))
+			ft_putchar('+');
+	}
 	while (t->precision-- > 0)
 		ft_putchar('0');
 //	ft_putnbr(t->precision);
