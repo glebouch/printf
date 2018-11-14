@@ -27,7 +27,7 @@ const char	*ft_ctoa(char c, int i)
 	return (str);
 }
 
-void	ft_percent(t_stringinfo *t)
+int	ft_percent(t_stringinfo *t)
 {
 	t->str++;
 	ft_init(t);
@@ -38,9 +38,11 @@ void	ft_percent(t_stringinfo *t)
 	}
 	else
 	{
+//		ft_putendl("totoici");
 		ft_putchar(*t->str);
 		t->ret++;
 	}
+	return (0);
 }
 
 int		ft_start(t_stringinfo *t)

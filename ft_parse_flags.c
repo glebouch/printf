@@ -74,7 +74,8 @@ void	ft_flags_ponct(t_stringinfo *t)
 
 void	ft_parse_flags(t_stringinfo *t)
 {
-	while (ft_strchr("-+0 #.hljz123456789", *t->str))
+//	ft_putstr(t->str);
+	while (*t->str && ft_strchr("-+0 #.hljz123456789", *t->str))
 	{
 //		ft_putstr(t->str);
 //		ft_putendl("coucou");
@@ -88,7 +89,7 @@ void	ft_parse_flags(t_stringinfo *t)
 			t->zeros = 1;
 		else if (ft_isdigit(*t->str))
 		{
-			t->sizemin = atoi(t->str);
+			t->sizemin = ft_atoi(t->str);
 			while (ft_isdigit(*(t->str + 1)))
 			t->str++;
 		}
@@ -101,8 +102,15 @@ void	ft_parse_flags(t_stringinfo *t)
 	}
 //	ft_putstr("lalalala\n");
 //	ft_putstr(t->str);
-	if (ft_strchr("sSpdDioOuUxXcC", *t->str))
+//	ft_putchar('[');
+//	ft_putchar(*t->str);
+//	ft_putstr("]\n");
+	if (*t->str != '\0')
 		ft_parse_specifier(t);
-	else
-		ft_parse_specifier(t);
+//	ft_putstr(t->str);
+//	else
+//	{
+//		ft_putendl("on sort");
+//		exit(0);
+//	}
 }

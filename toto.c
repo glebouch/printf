@@ -6,6 +6,7 @@
 #include <stdint.h>
 #include <inttypes.h>
 #include <locale.h>
+#include <limits.h>
 
 int main()
 {
@@ -21,8 +22,40 @@ int main()
  //	c = 0x0a;
 //	write(1, &c, 1);
 //	printf("\n%C\n", (wint_t)'Ș');
+	ft_printf("%", "test");
+	printf("@moulitest: %s\n", NULL);
+	printf("@moulitest: %s\n", "");
+	ft_printf("@moulitest: %s\n", NULL);
+	ft_printf("@moulitest: %s\n", "");
+	printf("%d\n", INT_MIN);
+	printf("%d\n", INT_MAX);
+//	printf("%u\n", UINT_MIN);
+	printf("%u\n", UINT_MAX);
+	printf("%ld\n", LONG_MIN);
+	printf("%ld\n", LONG_MAX);
+	printf("%lld\n", LLONG_MIN);
+	printf("%lld\n", LLONG_MAX);
+	printf("@moulitest: [%05.o %05.0o]\n", 0, 0);
+	printf("@moulitest: [%#0.o %#0.0o]\n", 0, 0);
+	printf("@moulitest: [%#05.o %#05.0o]\n", 0, 0);
+	printf("@moulitest: [%05.x %05.0x]\n", 0, 0);
+	printf("@moulitest: [%0#.x %0#.0x]\n", 0, 0);
+	printf("@moulitest: [%0#5.x %0#5.0x]\n", 0, 0);
+	printf("@moulitest: [%05.u %05.0u]\n", 0, 0);
+	printf("@moulitest: [%0#.u %0#.0u]\n", 0, 0);
+	printf("@moulitest: [%0#5.u %0#5.0u]\n", 0, 0);
 
-	ft_printf("[%s]\n", "tototo");
+
+	ft_printf("[%5.o %5.0o]\n", 0, 0);
+	ft_printf("[%#.o %#.0o]\n", 0, 0);
+	ft_printf("[%#5.o %#5.0o]\n", 0, 0);
+	ft_printf("[%5.x %5.0x]\n", 0, 0);
+	ft_printf("[%#.x %#.0x]\n", 0, 0);
+	ft_printf("[%#5.x %#5.0x]\n", 0, 0);
+	ft_printf("[%5.u %5.0u]\n", 0, 0);
+	ft_printf("[%#.u %#.0u]\n", 0, 0);
+	ft_printf("[%#5.u %#5.0u]\n", 0, 0);
+	ft_printf("[%lld]\n", 42);
 	ft_printf("[%   %]\n", "test");
 	ft_printf("[%x]\n", -42);
 	ft_printf("[%010x]\n", 542);
