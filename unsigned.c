@@ -22,8 +22,8 @@ int ft_prefix(t_stringinfo *t, int base, int maj)
 		ft_putstr("0X");
 	else if (base == 16)
 		ft_putstr("0x");
-//	if (t->precision <= 0 && t->sizemin <= 0)
-//		t->len += (base == 16) ? 2 : 1;
+	if (t->prefixe && base == 8 && !t->unbr)
+		t->len++;
 	return (0);
 }
 
@@ -37,7 +37,7 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 	len = ft_size_base((size_t)t->unbr, base) + t->prefixe;
 //	if (t->space && t->precision > t->sizemin)
 //		t->len = 1;
-	if(t->precision == 0 && t->unbr == 0 && base != 8)
+	if(t->precision == 0 && t->unbr == 0)
 		len = 0;
 	t->precision = (t->precision > len) ? t->precision - len : 0;
 	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
@@ -49,6 +49,8 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 			ft_prefix(t, base, maj);
 			t->prefixe = 0;
 		}
+		if(t->prefixe && base == 8 && !t->unbr)
+			t->sizemin--;
 		while (t->sizemin-- > 0)
 		{
 			if(t->zeros)
@@ -65,18 +67,18 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 		ft_putchar('0');
 //	if (!len)
 //		t->ret--;
-	if (len)
+	if (len || (!t->unbr && base == 8 && t->prefixe))
 		ft_putnbr_base(t->unbr, base, maj, 0);
 	if (t->aligne_g)
 	{
 		while (t->sizemin-- > 0)
 			ft_putchar(' ');
 	}
-	t->ret += t->len;
+	t->ret += (!t->unbr && base == 8 && t->prefixe) ? t->len + 1 : t->len;
 }
 void	ft_unsigned2(t_stringinfo *t)
 {
-	if (!t->unbr)
+	if (!t->unbr && (!t->prefixe || t->unbr || (*t->str != 'o' && *t->str != 'O')))
 		t->prefixe = 0;
 	if (*t->str == 'o')
 		ft_line_unsigned(t, 8, 0);
@@ -111,6 +113,6 @@ void	ft_unsigned(t_stringinfo *t)
 	else if (t->conversion == 6)
 		t->unbr = va_arg(t->ap, size_t);
 	else if (t->conversion == 0)
-		t->unbr = va_arg(t->ap, int);
+		t->unbr = (unsigned int)va_arg(t->ap, int);
 	ft_unsigned2(t);
 }

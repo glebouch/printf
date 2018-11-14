@@ -53,11 +53,18 @@ int 	ft_oct_print(t_stringinfo *t, int nb_l_print)
 	return (oct);
 }
 */
-void	ft_str(t_stringinfo *t)
+int		ft_str(t_stringinfo *t)
 {
-	int len;
+	int len = 0;
+//	ft_putendl("ta mere");
 
 	t->string = (char *)va_arg(t->ap, char *);
+	if (t->string == NULL)
+	{
+		ft_putstr("(null)");
+		t->ret += 6;
+		return(0);
+	}
 	len = ft_strlen(t->string);
 	if (t->precision > len || t->precision <= 0)
 		t->precision = len;
@@ -82,6 +89,7 @@ void	ft_str(t_stringinfo *t)
 		while (t->sizemin-- > 0)
 			ft_putchar(' ');
 	}
+	return(0);
 }
 /*void	ft_str(t_stringinfo *t)
 {

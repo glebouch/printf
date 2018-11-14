@@ -21,7 +21,6 @@
 void	ft_flags_conversion(t_stringinfo *t)
 {
 	int conv = 0;
-
 	if (*t->str == 'h')
 	{
 		if (t->str[1] == 'h')
@@ -41,7 +40,7 @@ void	ft_flags_conversion(t_stringinfo *t)
 	else if (*t->str == 'z')
 		conv = 6;
 	t->conversion = (conv > t->conversion) ? conv : t->conversion;
-	t->str += (conv == 1 || conv == 4) ? 2 : 1;
+	t->str += (conv == 1 || conv == 4) ? 1 : 0;
 }
 
 void	ft_flags_ponct(t_stringinfo *t)
@@ -103,5 +102,7 @@ void	ft_parse_flags(t_stringinfo *t)
 //	ft_putstr("lalalala\n");
 //	ft_putstr(t->str);
 	if (ft_strchr("sSpdDioOuUxXcC", *t->str))
+		ft_parse_specifier(t);
+	else
 		ft_parse_specifier(t);
 }

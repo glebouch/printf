@@ -22,16 +22,17 @@ void ft_signed2(t_stringinfo *t)
 //	if (t->space && t->nbr >= 0 && !t->signe)
 //		t->len = 1;
 	if(t->precision == 0 && t->nbr == 0)
-		precision_init_zero = 1;
+//		precision_init_zero = 1;
+		len = 0;
 	t->precision = (t->precision > len) ? t->precision - len : 0;
 	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
 	t->len += t->sizemin + t->precision + len;
 //	ft_putnbr(t->len);
 	if (t->nbr < 0 || t->sign || (t->space && t->nbr >= 0))
 	{
-		t->sizemin--;
 		if(t->sizemin <= 0)
 			t->len++;
+		t->sizemin--;
 //		ft_putnbr(t->len);
 	}
 	if (t->space && t->nbr >= 0)
@@ -63,9 +64,10 @@ void ft_signed2(t_stringinfo *t)
 	while (t->precision-- > 0)
 		ft_putchar('0');
 //	ft_putnbr(t->precision);
-	if (precision_init_zero == 1)
-		t->ret--;
-	else
+//	if (precision_init_zero == 1)
+//		t->ret--;
+//	else
+	if (len)
 		ft_putnbr_base(imaxabs((intmax_t)t->nbr), 10, 0, 0);
 	if (t->aligne_g)
 	{
@@ -78,6 +80,8 @@ void ft_signed2(t_stringinfo *t)
 
 void	ft_signed(t_stringinfo *t)
 {
+//	ft_putendl("dans signed");
+//	ft_putnbr(t->conversion);
 	if (*t->str == 'D' || t->conversion == 3)
 		t->nbr = va_arg(t->ap, long int);
 	else if (t->conversion == 1)
@@ -92,5 +96,6 @@ void	ft_signed(t_stringinfo *t)
 		t->nbr = va_arg(t->ap, size_t);
 	else if (t->conversion == 0)
 		t->nbr = va_arg(t->ap, int);
+//	ft_putnbr(t->nbr);
 	ft_signed2(t);
 }
