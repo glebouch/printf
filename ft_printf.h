@@ -45,12 +45,13 @@ typedef struct s_stringinfo
 	char		*str;
 	intmax_t	nbr;
 	uintmax_t	unbr;
-	char		*string;
+	wchar_t		*string;
 	wchar_t		ch;
 	va_list		ap;
 }				t_stringinfo;
 
-char		*ft_strndup (const char *line, size_t i);
+char		*ft_strndup(const char *line, size_t i);
+void		ft_putc_times(char c, int i);
 void		ft_parse_flags(t_stringinfo *t);
 void		ft_parse_specifier(t_stringinfo *t);
 void		ft_unsigned(t_stringinfo *t);
@@ -63,7 +64,7 @@ void		ft_putnbr_base(uintmax_t n, int base, int maj, int neg);
 int			ft_size_base(uintmax_t n, int base);
 void		ft_putchar_unicode(wchar_t caract, int oct);
 int 		ft_octet(wchar_t caract);
-int 		ft_oct_print(t_stringinfo *t, int nb_l_print);
+int 		ft_oct_print(t_stringinfo *t);
 
 
 #endif

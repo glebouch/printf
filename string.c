@@ -39,26 +39,82 @@
 	}
 	return(i);
 }
-
-int 	ft_oct_print(t_stringinfo *t, int nb_l_print)
+*/
+int 	ft_oct_print(t_stringinfo *t)
 {
 	int i = 0;
 	int oct = 0;
 
-	while (i < nb_l_print && t->string[i])
+	if(t->precision == 0)
+		return(0);
+	else if (t->precision == -1)
 	{
-		oct += ft_octet(t->string[i]);
-		i++;
+		while (t->string[i])
+		{
+			oct += ft_octet(t->string[i]);
+			i++;
+		}
 	}
+	else
+	{
+		while (oct < t->precision && t->string[i])
+		{
+			oct += ft_octet(t->string[i]);
+//			ft_putnbr(oct);
+			i++;
+		}
+	}
+//	ft_putnbr(oct);
 	return (oct);
 }
-*/
-int		ft_str(t_stringinfo *t)
+
+int		ft_wstr2(t_stringinfo *t)
+{
+//	ft_putendl("sssslut");
+	int oct = 0;
+	int i = 0;
+	int j = 0;
+	if (t->string == NULL)
+	{
+		ft_putstr("(null)");
+		t->ret += 6;
+		return(0);
+	}
+	oct = ft_oct_print(t);
+	t->sizemin = (oct < t->sizemin) ? t->sizemin - oct : 0;
+	t->ret += t->sizemin + oct;
+	if (!t->aligne_g)
+	{
+		while (t->sizemin-- > 0)
+		{
+			if(t->zeros)
+				ft_putchar('0');
+			else
+				ft_putchar(' ');
+		}
+	}
+	while(j < oct)
+	{
+		if(t->string[i] < 127)
+			ft_putchar(t->string[i]);
+		else
+			ft_putchar_unicode(t->string[i], ft_octet(t->string[i]));
+		j += ft_octet(t->string[i]);
+		i++;
+	}
+	if(t->aligne_g)
+	{
+		while(t->sizemin-- > 0)
+			ft_putchar(' ');
+	}
+	return(0);
+}
+
+int		ft_str2(t_stringinfo *t)
 {
 	int len = 0;
 //	ft_putendl("ta mere");
-
-	t->string = (char *)va_arg(t->ap, char *);
+//ft_putnbr(t->precision);
 	if (t->string == NULL)
 	{
 		ft_putstr("(null)");
@@ -66,7 +122,7 @@ int		ft_str(t_stringinfo *t)
 		return(0);
 	}
 	len = ft_strlen(t->string);
-	if (t->precision > len || t->precision <= 0)
+	if (t->precision > len || t->precision < 0)
 		t->precision = len;
 	t->sizemin = (t->precision < t->sizemin) ? t->sizemin - t->precision : 0;
 	t->ret += t->sizemin + t->precision;
@@ -74,12 +130,13 @@ int		ft_str(t_stringinfo *t)
 	{
 		while (t->sizemin-- > 0)
 		{
-//			if(t->zeros)
-//				ft_putchar('0');
-//			else
+			if(t->zeros)
+				ft_putchar('0');
+			else
 				ft_putchar(' ');
 		}
 	}
+//	ft_putnbr(t->precision);
 	if (!t->string)
 		ft_putstr("(null)");
 	if (t->string[0])
@@ -90,6 +147,21 @@ int		ft_str(t_stringinfo *t)
 			ft_putchar(' ');
 	}
 	return(0);
+}
+
+int ft_str(t_stringinfo *t)
+{
+	if (*t->str == 'S' || t->conversion >= 3)
+	{
+		t->string = (wchar_t *)va_arg(t->ap, wchar_t *);
+		ft_wstr2(t);
+	}
+	else if (*t->str == 's')
+	{
+		t->string = (char *)va_arg(t->ap, char *);
+		ft_str2(t);
+	}
+	return (0);
 }
 /*void	ft_str(t_stringinfo *t)
 {

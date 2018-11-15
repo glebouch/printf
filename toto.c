@@ -22,8 +22,57 @@ int main()
  //	c = 0x0a;
 //	write(1, &c, 1);
 //	printf("\n%C\n", (wint_t)'Ș');
-	ft_printf("%", "test");
-	printf("@moulitest: %s\n", NULL);
+//	ft_printf("%", "test");
+	ft_printf("@main_ftprintf: %###-#0000 33...12..#0+0d\n", 256);
+	printf("@main_ftprintf: %033.6.12.5d\n", 256);
+	ft_printf("@main_ftprintf: %10d\n", 256);
+	ft_printf("%p\n", 0);
+	printf("ori %s\n", "toto");
+	ft_printf("me  %s\n", "toto");
+	ft_printf("\n\n\n");
+	a = printf("ori %S\n", L"Á±≥trtrtr");
+	ft_putnbr(a);
+	a = ft_printf("me  %S\n", L"Á±≥trtrtr");
+	ft_putnbr(a);
+
+	a = printf("toto %.4S  \n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	ft_putnbr(a);
+	a = ft_printf("%.4S", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	ft_putnbr(a);
+	a = ft_printf("%.4S", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	ft_putnbr(a);
+	ft_printf("\n\ntotototo\n");
+	
+	a = printf("%.4S", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	printf("\n\ntotototo  %d\n", a);
+	a = ft_printf("%.4S ", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	printf("\n\ntotototo  %d\n", a);
+
+	
+
+/*	a = printf("[%.0p, %.p]\n", &a, &a);
+	ft_putnbr(a);
+	a = ft_printf("[%.0p, %.p]\n", &a, &a);
+	ft_putnbr(a);
+
+	a = printf("\nprintf %+i\n", 42);
+	ft_putnbr(a);
+	a = ft_printf("\nft_pri %+i\n", 42);
+	ft_putnbr(a);
+	a = printf("\nprintf %+d\n", 42);
+	ft_putnbr(a);
+	a = ft_printf("\nft_pri %+d\n", 42);
+	ft_putnbr(a);
+	a = printf("\nprintf %+D\n", 42);
+	ft_putnbr(a);
+	a = ft_printf("\nft_pri %+D\n", 42);
+	ft_putnbr(a);
+
+	a = printf("\nprintf %#o\n", 0);
+	ft_putnbr(a);
+	a = printf("\nft_pri %#o\n", 0);
+	ft_putnbr(a);*/
+/*	printf("@moulitest: %s\n", NULL);
 	printf("@moulitest: %s\n", "");
 	ft_printf("@moulitest: %s\n", NULL);
 	ft_printf("@moulitest: %s\n", "");
@@ -67,7 +116,7 @@ int main()
 	printf("%+D\n", 123456789999L);
 	printf("\"\'\n");
 	printf("%-0 12.14d\n", 42);
-	printf("%-0 10.9d\n", 42424242);
+	printf("%-0 10.9d\n", 42424242);*/
 	return(0);
 }
 

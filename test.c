@@ -13,30 +13,36 @@
 #include "ft_printf.h"
 #include <locale.h>
 
-const char	*ft_ctoa(char c, int i)
+void	ft_putc_times(char c, int i)
 {
 	char *str;
-	str = ft_strnew(i);
-	str[i] = '\0';
-	i--;
-	while (i >= 0)
+	str = ft_strnew(i);	
+
+	if (i > 0)
 	{
-		str[i] = c;
+		str[i] = '\0';
 		i--;
+		while (i >= 0)
+		{
+			str[i] = c;
+			ft_putnbr(i);
+			i--;
+		}
+		ft_putstr(str);
 	}
-	return (str);
+	free(str);
 }
 
 int	ft_percent(t_stringinfo *t)
 {
 	t->str++;
 	ft_init(t);
-	if (ft_strchr("123456789-+0 #.sSpdDioOuUxXcChljz", *t->str))
+	if (*t->str && ft_strchr("123456789-+0 #.sSpdDioOuUxXcChljz", *t->str))
 	{
 //		ft_putstr("tamere\n");
 		ft_parse_flags(t);
 	}
-	else
+	else if (*t->str)
 	{
 //		ft_putendl("totoici");
 		ft_putchar(*t->str);
@@ -58,16 +64,16 @@ int		ft_start(t_stringinfo *t)
 			ft_putchar(*t->str);
 			t->ret++;
 		}
-		t->str++;
+		if(*t->str)
+			t->str++;
 	}
-
 	return (0);
 }
 
 int ft_printf(char *str, ...)
 {
 	t_stringinfo t;
-	int ret;
+	int ret = 0;
 
 	ft_bzero((void *)&t, sizeof(t));
 	t.str = str;

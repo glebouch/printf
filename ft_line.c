@@ -12,6 +12,11 @@
 
 #include "ft_printf.h"
 
+void	ft_eol(t_stringinfo *t)
+{
+	exit(0);
+}
+
 int	ft_size(uintmax_t n)
 {
 	int	size;

@@ -22,8 +22,8 @@ int ft_prefix(t_stringinfo *t, int base, int maj)
 		ft_putstr("0X");
 	else if (base == 16)
 		ft_putstr("0x");
-	if (t->prefixe && base == 8 && !t->unbr)
-		t->len++;
+//	if (t->prefixe && base == 8 && !t->unbr)
+//		t->len++;
 	return (0);
 }
 
@@ -31,6 +31,7 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 {
 	int len;
 	int precision_init_zero = 0;
+//	ft_putnbr(t->prefixe);
 //	printf("ou [%jx]\n", t->unbr);
 //	ft_putstr("passe par print\n");
 
@@ -61,7 +62,7 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 	}
 //	ft_putendl("check");
 //	ft_putnbr(t->unbr);
-	if(t->unbr != 0)
+	if(t->unbr || (!t->unbr && t->prefixe == 2))
 		ft_prefix(t, base, maj);
 	while (t->precision-- > 0)
 		ft_putchar('0');
@@ -75,6 +76,8 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 			ft_putchar(' ');
 	}
 	t->ret += (!t->unbr && base == 8 && t->prefixe) ? t->len + 1 : t->len;
+//	if (t->prefixe == 2)
+//		t->ret += 2;
 }
 void	ft_unsigned2(t_stringinfo *t)
 {
@@ -82,17 +85,18 @@ void	ft_unsigned2(t_stringinfo *t)
 		t->prefixe = 0;
 	if (*t->str == 'o')
 		ft_line_unsigned(t, 8, 0);
-	if (*t->str == 'O')
+	else if (*t->str == 'O')
 		ft_line_unsigned(t, 8, 1);
-	if (*t->str == 'u' || *t->str == 'U')
+	else if (*t->str == 'u' || *t->str == 'U')
 		ft_line_unsigned(t, 10, 0);
-	if (*t->str == 'x')
+	else if (*t->str == 'x')
 		ft_line_unsigned(t, 16, 0);
-	if (*t->str == 'X')
+	else if (*t->str == 'X')
 		ft_line_unsigned(t, 16, 1);
-	if (*t->str == 'p')
+	else if (*t->str == 'p')
 	{
-		t->prefixe = (t->unbr) ? 2 : 0;
+		t->prefixe = 2;
+//		ft_putendl("vient de la");
 		ft_line_unsigned(t, 16, 0);
 	}
 }

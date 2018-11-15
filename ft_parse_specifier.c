@@ -66,7 +66,7 @@ int 	ft_octet(wchar_t caract)
 
 void ft_parse_specifier(t_stringinfo *t)
 {
-//	ft_putstr("tototo\n");
+//	ft_putstr("ft_parse_specifier\n");
 	if (ft_strchr("Ddi", *t->str))
 		ft_signed(t);
 	else if (ft_strchr("oOuUxXp", *t->str))
@@ -77,7 +77,7 @@ void ft_parse_specifier(t_stringinfo *t)
 	}
 	else if (*t->str == 's' || *t->str == 'S')
 		ft_str(t);
-	else
+	else if (*t->str)
 		ft_char(t);
 }
 /*

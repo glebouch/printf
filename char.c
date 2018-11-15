@@ -25,9 +25,9 @@ void	ft_char2(t_stringinfo *t)
 	{
 		while (t->sizemin-- > 0)
 		{
-//			if(t->zeros)
-//				ft_putchar('0');
-//			else
+			if(t->zeros)
+				ft_putchar('0');
+			else
 				ft_putchar(' ');
 		}
 	}
@@ -51,6 +51,6 @@ void	ft_char(t_stringinfo *t)
 	else if (t->conversion == 3 || *t->str == 'C')
 		t->ch = (wchar_t)va_arg(t->ap, unsigned int);
 	else if (*t->str == 'c')
-		t->ch = (wchar_t)va_arg(t->ap, unsigned int);
+		t->ch = (char)va_arg(t->ap, unsigned int);
 	ft_char2(t);
 }
