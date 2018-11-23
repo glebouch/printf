@@ -65,16 +65,16 @@ void ft_signed2(t_stringinfo *t)
 		if (t->nbr >= 0 && t->sign == 1 && ft_strchr("Ddi", *t->str))
 			ft_putchar('+');
 	}
-	while (t->precision-- > 0)
-		ft_putchar('0');
-//	ft_putc_times('0', t->precision);
+//	while (t->precision-- > 0)
+//		ft_putchar('0');
+	ft_putc_times('0', t->precision);
 	if (len)
 		ft_putnbr_base(ft_imaxabs((intmax_t)t->nbr), 10, 0, 0);
 	if (t->aligne_g)
 	{
-//		ft_putc_times(' ', t->sizemin);
-		while (t->sizemin-- > 0)
-			ft_putchar(' ');
+		ft_putc_times(' ', t->sizemin);
+//		while (t->sizemin-- > 0)
+//			ft_putchar(' ');
 	}
 	t->ret += t->len;
 }

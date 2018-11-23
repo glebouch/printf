@@ -67,8 +67,11 @@ int 	ft_octet(wchar_t caract)
 void ft_parse_specifier(t_stringinfo *t)
 {
 //	ft_putstr("ft_parse_specifier\n");
+//	ft_putstr(t->str);
 	if (ft_strchr("Ddi", *t->str))
 		ft_signed(t);
+	else if (*t->str == 'f')
+		ft_putfloat(t);
 	else if (ft_strchr("oOuUxXp", *t->str))
 	{
 		if (t->prefixe && (*t->str == 'x' || *t->str == 'X' || *t->str == 'p'))

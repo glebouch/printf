@@ -49,17 +49,17 @@ int 	ft_oct_print(t_stringinfo *t)
 		return(0);
 	else if (t->precision == -1)
 	{
-		while (t->string[i])
+		while (t->wstring[i])
 		{
-			oct += ft_octet(t->string[i]);
+			oct += ft_octet(t->wstring[i]);
 			i++;
 		}
 	}
 	else
 	{
-		while (oct < t->precision && t->string[i])
+		while (oct < t->precision && t->wstring[i])
 		{
-			oct += ft_octet(t->string[i]);
+			oct += ft_octet(t->wstring[i]);
 //			ft_putnbr(oct);
 			i++;
 		}
@@ -74,7 +74,7 @@ int		ft_wstr2(t_stringinfo *t)
 	int oct = 0;
 	int i = 0;
 	int j = 0;
-	if (t->string == NULL)
+	if (t->wstring == NULL)
 	{
 		ft_putstr("(null)");
 		t->ret += 6;
@@ -85,27 +85,32 @@ int		ft_wstr2(t_stringinfo *t)
 	t->ret += t->sizemin + oct;
 	if (!t->aligne_g)
 	{
-		while (t->sizemin-- > 0)
-		{
-			if(t->zeros)
-				ft_putchar('0');
-			else
-				ft_putchar(' ');
-		}
+		if (t->zeros)
+			ft_putc_times('0', t->sizemin);
+		else
+			ft_putc_times(' ', t->sizemin);
+//		while (t->sizemin-- > 0)
+//		{
+//			if(t->zeros)
+//				ft_putchar('0');
+//			else
+//				ft_putchar(' ');
+//		}
 	}
 	while(j < oct)
 	{
-		if(t->string[i] < 127)
-			ft_putchar(t->string[i]);
+		if(t->wstring[i] < 127)
+			ft_putchar(t->wstring[i]);
 		else
-			ft_putchar_unicode(t->string[i], ft_octet(t->string[i]));
-		j += ft_octet(t->string[i]);
+			ft_putchar_unicode(t->wstring[i], ft_octet(t->wstring[i]));
+		j += ft_octet(t->wstring[i]);
 		i++;
 	}
 	if(t->aligne_g)
 	{
-		while(t->sizemin-- > 0)
-			ft_putchar(' ');
+		ft_putc_times(' ', t->sizemin);
+//		while(t->sizemin-- > 0)
+//			ft_putchar(' ');
 	}
 	return(0);
 }
@@ -121,30 +126,35 @@ int		ft_str2(t_stringinfo *t)
 		t->ret += 6;
 		return(0);
 	}
-	len = ft_strlen(t->string);
+	len = ft_strlen((char*)t->string);
 	if (t->precision > len || t->precision < 0)
 		t->precision = len;
 	t->sizemin = (t->precision < t->sizemin) ? t->sizemin - t->precision : 0;
 	t->ret += t->sizemin + t->precision;
 	if (!t->aligne_g)
 	{
-		while (t->sizemin-- > 0)
-		{
-			if(t->zeros)
-				ft_putchar('0');
-			else
-				ft_putchar(' ');
-		}
+		if (t->zeros)
+			ft_putc_times('0', t->sizemin);
+		else
+			ft_putc_times(' ', t->sizemin);
+	//	while (t->sizemin-- > 0)
+	//	{
+	//		if(t->zeros)
+	//			ft_putchar('0');
+	//		else
+	//			ft_putchar(' ');
+	//	}
 	}
 //	ft_putnbr(t->precision);
 	if (!t->string)
 		ft_putstr("(null)");
 	if (t->string[0])
-		ft_putnstr(t->string, t->precision);
+		ft_putnstr((char *)t->string, t->precision);
 	if (t->aligne_g)
 	{
-		while (t->sizemin-- > 0)
-			ft_putchar(' ');
+		ft_putc_times(' ', t->sizemin);
+//		while (t->sizemin-- > 0)
+//			ft_putchar(' ');
 	}
 	return(0);
 }
@@ -153,12 +163,12 @@ int ft_str(t_stringinfo *t)
 {
 	if (*t->str == 'S' || t->conversion >= 3)
 	{
-		t->string = (wchar_t *)va_arg(t->ap, wchar_t *);
+		t->wstring = (wchar_t *)va_arg(t->ap, wchar_t *);
 		ft_wstr2(t);
 	}
 	else if (*t->str == 's')
 	{
-		t->string = (char *)va_arg(t->ap, char *);
+		t->string = (char*)va_arg(t->ap, char *);
 		ft_str2(t);
 	}
 	return (0);

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft/libft.h"
+#include "ft_printf.h"
 #include <wchar.h>
 #include <stdarg.h>
 #include <stdint.h>
@@ -66,6 +67,7 @@ char		*ft_ftoa(float f)
 123123.0
 
 */
+/*
 void	ft_putc_times(char c, int i)
 {
 	char *str;
@@ -182,7 +184,7 @@ void ft_putfloat(double f, int precision)
 //	ft_putnbr(reste);
 //	ft_putendl("is rest");
 }
-
+*/
 int main (void)
 {
 //	ft_putnbr(ft_float_len(123.0));
@@ -190,23 +192,32 @@ int main (void)
 //	ft_putfloat(123456, -1);
 //	printf("\n[%f]\n", 123.10);
 //	ft_putfloat(123.10, -1);
-	printf("\n[%f]\n", 123.0123);
-	ft_putfloat(123.0123, -1);
+//	printf("\n[%f]\n", 123.0123);
+//	ft_putfloat(123.0123, -1);
 //	printf("\n[%.0f]\n", 123.0123);
 //	ft_putfloat(123.0123, 0);
-	printf("\n\n[%.12f]\n", 123.0123);
-	ft_putfloat(123.0123, 12);
+	printf("\n[%.12f]\n", 123.0123);
+	ft_printf("\n{%.12f}\n", 123.0123);
+//	ft_putfloat(123.0123, 12);
 	printf("\n[%f]\n", 123.00123);
-	ft_putfloat(123.00123, -1);
+	ft_printf("\n{%f}\n", 123.00123);
+//	ft_putfloat(123.00123, -1);
 	printf("\n[%f]\n", 123.000123);
-	ft_putfloat(123.000123, -1);
+	ft_printf("\n{%f}\n", 123.000123);
+//	ft_putfloat(123.000123, -1);
 	printf("\n[%.2f]\n", 123.0153);
-	ft_putfloat(123.0153, 2);
+	ft_printf("\n{%.2f}\n", 123.0153);
+//	ft_putfloat(123.0153, 2);
 	printf("\n[%.2f]\n", 123.000123);
-	ft_putfloat(123.000123, 2);
+	ft_printf("\n{%.2f}\n", 123.000123);
+//	ft_putfloat(123.000123, 2);
 	printf("\n[% .f]\n", 12.0);
-	ft_putfloat(123.000123, 2);
+	ft_printf("\n{% .f}\n", 12.0);
+//	ft_putfloat(123.000123, 2);
 	printf("\n[% +f]\n", 12.0);
-	ft_putfloat(123.000123, 2);
+	ft_printf("\n{% +f}\n", 12.0);
+//	ft_putfloat(123.000123, 2);
+	printf("\n[%f]\n", 12.123);
+	ft_printf("\n{%f}\n", 12.123);
 	return (0);
 }

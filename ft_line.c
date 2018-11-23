@@ -66,5 +66,7 @@ void ft_init(t_stringinfo *t)
 	t->nbr = 0;
 	t->unbr = 0;
 	t->string = NULL;
+	t->wstring = NULL;
 	t->ch = 0;
+	t->f = 0;
 }

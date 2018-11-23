@@ -52,6 +52,10 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 		}
 		if(t->prefixe && base == 8 && !t->unbr)
 			t->sizemin--;
+//		if (t->zeros)
+//			ft_putc_times('0', t->sizemin);
+//		else
+//			ft_putc_times(' ', t->sizemin);
 		while (t->sizemin-- > 0)
 		{
 			if(t->zeros)
@@ -64,16 +68,18 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 //	ft_putnbr(t->unbr);
 	if(t->unbr || (!t->unbr && t->prefixe == 2))
 		ft_prefix(t, base, maj);
-	while (t->precision-- > 0)
-		ft_putchar('0');
+	ft_putc_times('0', t->precision);
+//	while (t->precision-- > 0)
+//		ft_putchar('0');
 //	if (!len)
 //		t->ret--;
 	if (len || (!t->unbr && base == 8 && t->prefixe))
 		ft_putnbr_base(t->unbr, base, maj, 0);
 	if (t->aligne_g)
 	{
-		while (t->sizemin-- > 0)
-			ft_putchar(' ');
+		ft_putc_times(' ', t->sizemin);
+//		while (t->sizemin-- > 0)
+//			ft_putchar(' ');
 	}
 	t->ret += (!t->unbr && base == 8 && t->prefixe) ? t->len + 1 : t->len;
 //	if (t->prefixe == 2)

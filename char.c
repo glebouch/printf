@@ -23,13 +23,17 @@ void	ft_char2(t_stringinfo *t)
 	t->len += t->sizemin + oct;
 	if (!t->aligne_g)
 	{
-		while (t->sizemin-- > 0)
-		{
-			if(t->zeros)
-				ft_putchar('0');
-			else
-				ft_putchar(' ');
-		}
+		if (t->zeros)
+			ft_putc_times('0', t->sizemin);
+		else
+			ft_putc_times(' ', t->sizemin);
+//		while (t->sizemin-- > 0)
+//		{
+//			if(t->zeros)
+//				ft_putchar('0');
+//			else
+//				ft_putchar(' ');
+//		}
 	}
 	if (t->ch < 127)
 		ft_putchar((char)t->ch);
@@ -37,8 +41,9 @@ void	ft_char2(t_stringinfo *t)
 		ft_putchar_unicode(t->ch, oct);
 	if (t->aligne_g)
 	{
-		while (t->sizemin-- > 0)
-			ft_putchar(' ');
+		ft_putc_times(' ', t->sizemin);
+//		while (t->sizemin-- > 0)
+//			ft_putchar(' ');
 	}
 	t->ret += t->len;
 }

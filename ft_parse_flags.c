@@ -82,7 +82,7 @@ printf("%0.1d", 42)
 
 void	ft_parse_flags(t_stringinfo *t)
 {
-//	ft_putstr(t->str);
+// 	ft_putstr(t->str);
 	while (*t->str && ft_strchr("-+0 #.hljz123456789", *t->str))
 	{
 //		ft_putstr(t->str);

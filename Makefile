@@ -25,8 +25,8 @@ CFLAGS = -Wall -Wextra -Werror -g3
 all : $(NAME)
 
 $(NAME) : $(OBJ) mlib
-#	libtool -link -o $@ $(LIB) $(OBJ)
-	ar rc $(NAME) $(OBJ) $(LIB)
+	libtool -static -o $@ $(LIB) $(OBJ)
+#	ar rc $(NAME) $(OBJ) $(LIB)
 
 mlib :
 	@make -C ./libft/
