@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft/libft.h"
+#include "ft_printf.h"
 #include <wchar.h>
 #include <stdarg.h>
 #include <stdint.h>
@@ -12,6 +13,18 @@ int main()
 {
 	setlocale(LC_ALL, "");
 	int a;
+	a = printf("\nprintf %+f\n", 42);
+	ft_putnbr(a);
+	a = ft_printf("\nft_pri %+f\n", 42);
+	ft_putnbr(a);
+	a = printf("\nprintf %f\n", 42);
+	ft_putnbr(a);
+	a = ft_printf("\nft_pri %f\n", 42);
+	ft_putnbr(a);
+	a = printf("\nprintf % f\n", 42);
+	ft_putnbr(a);
+	a = ft_printf("\nft_pri % f\n", 42);
+	ft_putnbr(a);
 //	unsigned char c;
 //    c = 0xe1;
 //    write(1, &c, 1);
@@ -23,6 +36,7 @@ int main()
 //	write(1, &c, 1);
 //	printf("\n%C\n", (wint_t)'Ș');
 //	ft_printf("%", "test");
+	/*
 	ft_printf("@main_ftprintf: %###-#0000 33...12..#0+0d\n", 256);
 	printf("@main_ftprintf: %033.6.12.5d\n", 256);
 	ft_printf("@main_ftprintf: %10d\n", 256);
@@ -47,10 +61,7 @@ int main()
 	printf("\n\ntotototo  %d\n", a);
 	a = ft_printf("%.4S ", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
 	printf("\n\ntotototo  %d\n", a);
-
-	
-
-/*	a = printf("[%.0p, %.p]\n", &a, &a);
+	a = printf("[%.0p, %.p]\n", &a, &a);
 	ft_putnbr(a);
 	a = ft_printf("[%.0p, %.p]\n", &a, &a);
 	ft_putnbr(a);

@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 
-SRC = test.c ft_parse_flags.c ft_parse_specifier.c ft_line.c unsigned.c signed.c char.c string.c
+SRC = test.c ft_parse_flags.c ft_parse_specifier.c ft_line.c unsigned.c signed.c char.c string.c float.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -25,7 +25,8 @@ CFLAGS = -Wall -Wextra -Werror -g3
 all : $(NAME)
 
 $(NAME) : $(OBJ) mlib
-	libtool -static -o $@ $(LIB) $(OBJ)
+#	libtool -link -o $@ $(LIB) $(OBJ)
+	ar rc $(NAME) $(OBJ) $(LIB)
 
 mlib :
 	@make -C ./libft/

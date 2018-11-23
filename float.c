@@ -1,0 +1,188 @@
+
+#include "ft_printf.h"
+
+int ft_float_len(float f, int *p_ent, int *p_dec)
+{
+	int i;
+	int j = 0;
+
+	*p_ent = ft_size((int)f);
+	while(10 * f != 10 * (int)f)
+	{
+		f *= 10;
+		*p_dec += 1;
+	}
+	return (i + j);
+}
+
+int ft_float2int(double f, int *a, int *b, int precision)
+{
+	int	p_ent; 
+	int	prec = 1;
+	int	ret = 1;
+	float p_dec;
+
+	prec = ft_power(10, precision);
+	p_ent = (int) f;
+	p_dec = f - p_ent;	
+	*a = p_ent;
+	*b = (int)(p_dec * prec);
+//	ft_putnbr((int)*b);
+//	ft_putnbr((int)(p_dec * prec));
+	if(*b != p_dec * prec)
+	{
+//		ft_putendl("ici");
+		if((int)(p_dec * prec * 10) % 10 >= 5)
+			*b += 1;
+//		ft_putchar(*b);
+	}
+	while (p_dec && (int)(p_dec * 10) == 0 && ret < precision)
+	{
+		ret++;
+		p_dec = p_dec * 10;
+	}
+	return (ret - 1);
+}
+
+void ft_putfloat2(double f, int precision)
+{
+	int reste = 0;
+	int zero = 0;
+	int b, a;
+	ft_putnbr((long long)f);
+	if (precision)
+		ft_putchar('.');
+	if (precision == -1)
+		precision = 6;
+	if(precision >= 6)
+	{
+		reste = precision - 6;
+		precision = 6;
+	}
+	zero = ft_float2int(f, &a, &b, precision);
+//	ft_putnbr(zero);
+//	ft_putendl("is zeros");
+	ft_putc_times('0', zero);
+//	ft_putendl("is the 0s");
+	ft_putnbr(b);
+//	ft_putendl("is dec");
+//	while(precision > 0)
+//	{
+			//printf("\nI%fI\n", f);
+//		f = 10 * (f - (int)f);
+
+		//printf("\nI%lfI\n", f);
+		//printf("\nI%dI\n", (int)f);
+//		ft_putnbr((long long)f);
+		//ft_putnbr((int)f);
+//		precision--;
+//	}
+	//printf("%lf",rest);
+	ft_putc_times('0', reste);
+//	ft_putnbr(reste);
+//	ft_putendl("is rest");
+}
+
+void ft_putfloat(t_stringinfo *t, float f, int precision)
+{
+	int len;
+	int precision_init_zero = 0;
+	int p_ent, p_dec;
+//	ft_putstr("passe par print\n");
+	len = ft_float_len(f, &p_ent, &p_dec);
+	if(f < 0)
+		len++;
+	if(p_dec && t->precision)
+		len++;
+//	if (t->space && t->nbr >= 0 && !t->signe)
+//		t->len = 1;
+	if(t->precision == 0 && f == 0)
+//		precision_init_zero = 1;
+		len = 0;
+	t->precision = (t->precision < 0) ? 6 : t->precision;
+	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
+	t->len += t->sizemin + t->precision + len;
+//	ft_putnbr(t->len);
+	if (t->nbr < 0 || t->sign || (t->space && f >= 0))
+	{
+		if(t->sizemin <= 0)
+			t->len++;
+		t->sizemin--;
+//		ft_putnbr(t->len);
+	}
+	if (t->space && f >= 0)
+		ft_putchar(' ');
+	if (t->zeros)
+	{
+		if (f < 0)
+			ft_putchar('-');
+		if (f >= 0 && t->sign == 1)
+			ft_putchar('+');
+	}
+	if (!t->aligne_g)
+	{
+//		if (t->zeros)
+//			ft_putc_times('0', t->sizemin);
+//		else
+//			ft_putc_times(' ', t->sizemin);
+		while (t->sizemin-- > 0)
+		{
+			if(t->zeros)
+				ft_putchar('0');
+			else
+				ft_putchar(' ');
+		}void ft_putfloat2(double f, int precision)
+{
+	int reste = 0;
+	int zero = 0;
+	int b, a;
+	ft_putnbr((long long)f);
+	if (precision)
+		ft_putchar('.');
+	if (precision == -1)
+		precision = 6;
+	if(precision >= 6)
+	{
+		reste = precision - 6;
+		precision = 6;
+	}
+	zero = ft_float2int(f, &a, &b, precision);
+//	ft_putnbr(zero);
+//	ft_putendl("is zeros");
+	ft_putc_times('0', zero);
+//	ft_putendl("is the 0s");
+	ft_putnbr(b);
+//	ft_putendl("is dec");
+//	while(precision > 0)
+//	{
+			//printf("\nI%fI\n", f);
+//		f = 10 * (f - (int)f);
+
+		//printf("\nI%lfI\n", f);
+		//printf("\nI%dI\n", (int)f);
+//		ft_putnbr((long long)f);
+		//ft_putnbr((int)f);
+//		precision--;
+//	}
+	//printf("%lf",rest);
+	ft_putc_times('0', reste);
+//	ft_putnbr(reste);
+//	ft_putendl("is rest");
+}
+	}
+	if(!t->zeros)
+	{
+		if (f < 0)
+			ft_putchar('-');
+		if (f >= 0 && t->sign == 1)
+			ft_putchar('+');
+	}
+	ft_putfloat2(f, t->precision);
+	if (t->aligne_g)
+	{
+//		ft_putc_times(' ', t->sizemin);
+		while (t->sizemin-- > 0)
+			ft_putchar(' ');
+	}
+	t->ret += t->len;
+}

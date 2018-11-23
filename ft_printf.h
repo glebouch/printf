@@ -45,6 +45,7 @@ typedef struct s_stringinfo
 	char		*str;
 	intmax_t	nbr;
 	uintmax_t	unbr;
+	long double	fl;
 	wchar_t		*string;
 	wchar_t		ch;
 	va_list		ap;
@@ -65,6 +66,7 @@ int			ft_size_base(uintmax_t n, int base);
 void		ft_putchar_unicode(wchar_t caract, int oct);
 int 		ft_octet(wchar_t caract);
 int 		ft_oct_print(t_stringinfo *t);
+void 		ft_putfloat(t_stringinfo *t, float f, int precision);
 
 
 #endif

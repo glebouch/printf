@@ -17,6 +17,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
+# include <inttypes.h>
 
 typedef struct	s_list
 {
@@ -91,5 +93,6 @@ char			*ft_sizetoa(size_t n);
 void			ft_putnstr(char const *s, int n);
 void			ft_putnstr_fd(char const *s, int n, int fd);
 size_t			ft_imaxabs(intmax_t n);
+int				ft_power(int i, int j);
 
 #endif
