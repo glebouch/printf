@@ -16,7 +16,7 @@
 void	ft_putc_times(char c, int i)
 {
 	char *str;
-	str = ft_strnew(i);	
+	str = ft_strnew(i + 1);	
 
 	if (i > 0)
 	{

@@ -38,17 +38,23 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 	len = ft_size_base((size_t)t->unbr, base) + t->prefixe;
 //	if (t->space && t->precision > t->sizemin)
 //		t->len = 1;
-	if(t->precision == 0 && t->unbr == 0)
+	if (*t->str == 'p' && !t->unbr && t->zeros)
+		t->aligne_g = 0;
+	if((t->precision == 0 && t->unbr == 0) || (!t->unbr && base == 8 && t->prefixe))
 		len = 0;
+
+//	ft_putnbr(len);
 	t->precision = (t->precision > len) ? t->precision - len : 0;
 	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
 	t->len += t->sizemin + t->precision + len;
+//	ft_putnbr(t->len);
 	if (!t->aligne_g)
 	{
-		if(t->prefixe && t->zeros && t->unbr)
+		if(t->prefixe && t->zeros && t->unbr || (*t->str == 'p' && t->unbr == 0 && t->zeros))
 		{
 			ft_prefix(t, base, maj);
 			t->prefixe = 0;
+//			ft_putendl("toto");
 		}
 		if(t->prefixe && base == 8 && !t->unbr)
 			t->sizemin--;

@@ -12,19 +12,29 @@
 int main()
 {
 	setlocale(LC_ALL, "");
-	int a;
-	a = printf("\nprintf %+f\n", 42);
+	int a = 0;
+//	long double b = 1234.1234612834587;
+//	a = printf("\nprintf %12Lf\n", b);
+//	ft_putnbr(a);
+	a = ft_printf("\nft_pri %. 12+lf\n", 42.123);
 	ft_putnbr(a);
-	a = ft_printf("\nft_pri %+f\n", 42);
+	a = printf("\n%p\n", 0, 0);
 	ft_putnbr(a);
-	a = printf("\nprintf %f\n", 42);
+	a = ft_printf("\n%p\n", 0, 0);
 	ft_putnbr(a);
-	a = ft_printf("\nft_pri %f\n", 42);
+	a = printf("\n%.p, %.0p\n", 0, 0);
 	ft_putnbr(a);
-	a = printf("\nprintf % f\n", 42);
+	a = ft_printf("\n%.p, %.0p\n", 0, 0);
 	ft_putnbr(a);
-	a = ft_printf("\nft_pri % f\n", 42);
-	ft_putnbr(a);
+	sleep(5);
+//	a = printf("\nprintf %f\n", 42);
+//	ft_putnbr(a);
+//	a = ft_printf("\nft_pri %f\n", 42);
+//	ft_putnbr(a);
+//	a = printf("\nprintf % f\n", 42);
+//	ft_putnbr(a);
+//	a = ft_printf("\nft_pri % f\n", 42);
+//	ft_putnbr(a);
 //	unsigned char c;
 //    c = 0xe1;
 //    write(1, &c, 1);

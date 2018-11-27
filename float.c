@@ -1,34 +1,41 @@
 
 #include "ft_printf.h"
 
-int ft_float_len(float f, int *p_ent, int *p_dec)
+int ft_float_len(float f, int precision, int *lp_ent, int *lp_dec)
 {
-	int i;
-	int j = 0;
-
-	*p_ent = ft_size((int)f);
+	*lp_ent = ft_size((int)f);
 	while(10 * f != 10 * (int)f)
 	{
 		f *= 10;
-		*p_dec += 1;
+		*lp_dec += 1;
 	}
-	return (i + j);
+	if (precision > 0)
+		return(*lp_ent + precision + 1);
+	else if (precision < 0)
+		return (*lp_ent + 6 + 1);
+	else
+		return (*lp_ent);
 }
 
-int ft_float2int(double f, int *a, int *b, int precision)
+int ft_float2int(double f, long long int *a, long long int *b, int precision)
 {
-	int	p_ent; 
+//	ft_putendl("float2int");
+	int	p_ent = 0; 
 	int	prec = 1;
 	int	ret = 1;
-	float p_dec;
+	double p_dec = 0;
 
 	prec = ft_power(10, precision);
-	p_ent = (int) f;
-	p_dec = f - p_ent;	
+	p_ent = (int)f;
+//	ft_putnbr(p_ent);
+//	ft_putendl("float2int");
+	p_dec = f - p_ent;
 	*a = p_ent;
 	*b = (int)(p_dec * prec);
-//	ft_putnbr((int)*b);
-//	ft_putnbr((int)(p_dec * prec));
+//	ft_putnbr((int)(f * prec));
+//	ft_putendl("float2int");
+//	ft_putnbr(prec);
+//	ft_putendl("float2int");
 	if(*b != p_dec * prec)
 	{
 //		ft_putendl("ici");
@@ -93,24 +100,20 @@ void ft_putfloat2(double f, int precision)
 void ft_putfloat(t_stringinfo *t)
 {
 	int len = 0;
-	int p_ent = 0;
-	int p_dec = 0;
+	int lp_ent = 0;
+	int lp_dec = 0;
 	t->f = va_arg(t->ap, double);
-//	ft_putstr("passe par print\n");
-	len = ft_float_len(t->f, &p_ent, &p_dec);
-	if(t->f < 0)
-		len++;
-	if(p_dec && t->precision)
-		len++;
-//	if (t->space && t->nbr >= 0 && !t->signe)
-//		t->len = 1;
-	if(t->precision == 0 && t->f == 0)
-//		precision_init_zero = 1;
-		len = 0;
+//	ft_putnbr(t->sign);
+//	ft_putstr("passe par print \n");
+	len = ft_float_len(t->f, t->precision, &lp_ent, &lp_dec);
+//	ft_putstr("toto ");
+//	ft_putnbr(len);
+//	ft_putendl(" toto");
+
 	t->precision = (t->precision < 0) ? 6 : t->precision;
-	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
-	t->len += t->sizemin + t->precision + len;
-//	ft_putnbr(t->len);
+	t->sizemin = (t->sizemin > len) ? t->sizemin - len : 0;
+	t->len += t->sizemin + len;
+//	ft_putnbr(t->sizemin);
 	if (t->f < 0 || t->sign || (t->space && t->f >= 0))
 	{
 		if(t->sizemin <= 0)
@@ -156,4 +159,5 @@ void ft_putfloat(t_stringinfo *t)
 //			ft_putchar(' ');
 	}
 	t->ret += t->len;
+//	ft_putendl("lololol");
 }
