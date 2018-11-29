@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 
-SRC = test.c ft_parse_flags.c ft_parse_specifier.c ft_line.c unsigned.c signed.c char.c string.c float.c
+SRC = test.c ft_parse_flags.c ft_parse_specifier.c ft_line.c unsigned.c signed.c char.c string.c float.c pointeur.c
 
 OBJ = $(SRC:.c=.o)
 

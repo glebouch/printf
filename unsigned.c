@@ -27,48 +27,34 @@ int ft_prefix(t_stringinfo *t, int base, int maj)
 	return (0);
 }
 
-void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
+void	ft_hexa_dec(t_stringinfo *t, int base, int maj)
 {
 	int len;
 	int precision_init_zero = 0;
 //	ft_putnbr(t->prefixe);
-//	printf("ou [%jx]\n", t->unbr);
+
 //	ft_putstr("passe par print\n");
-
+	if(t->unbr == 0)
+		t->prefixe = 0;
 	len = ft_size_base((size_t)t->unbr, base) + t->prefixe;
-//	if (t->space && t->precision > t->sizemin)
-//		t->len = 1;
-	if (*t->str == 'p' && !t->unbr && t->zeros)
-		t->aligne_g = 0;
-	if((t->precision == 0 && t->unbr == 0) || (!t->unbr && base == 8 && t->prefixe))
+	if(t->precision == 0 && t->unbr == 0)
 		len = 0;
-
 //	ft_putnbr(len);
-	t->precision = (t->precision > len) ? t->precision - len : 0;
+	t->precision = (t->precision > (len - t->prefixe)) ? t->precision - (len - t->prefixe) : 0;
 	t->sizemin = (t->sizemin > t->precision + len) ? t->sizemin - (t->precision + len) : 0;
 	t->len += t->sizemin + t->precision + len;
 //	ft_putnbr(t->len);
 	if (!t->aligne_g)
 	{
-		if(t->prefixe && t->zeros && t->unbr || (*t->str == 'p' && t->unbr == 0 && t->zeros))
+		if(t->prefixe && t->zeros && t->unbr)
 		{
 			ft_prefix(t, base, maj);
 			t->prefixe = 0;
-//			ft_putendl("toto");
 		}
-		if(t->prefixe && base == 8 && !t->unbr)
-			t->sizemin--;
-//		if (t->zeros)
-//			ft_putc_times('0', t->sizemin);
-//		else
-//			ft_putc_times(' ', t->sizemin);
-		while (t->sizemin-- > 0)
-		{
-			if(t->zeros)
-				ft_putchar('0');
-			else
-				ft_putchar(' ');
-		}
+		if (t->zeros)
+			ft_putc_times('0', t->sizemin);
+		else
+			ft_putc_times(' ', t->sizemin);
 	}
 //	ft_putendl("check");
 //	ft_putnbr(t->unbr);
@@ -79,7 +65,7 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 //		ft_putchar('0');
 //	if (!len)
 //		t->ret--;
-	if (len || (!t->unbr && base == 8 && t->prefixe))
+	if (len || (!t->unbr && t->prefixe))
 		ft_putnbr_base(t->unbr, base, maj, 0);
 	if (t->aligne_g)
 	{
@@ -87,29 +73,30 @@ void	ft_line_unsigned(t_stringinfo *t, int base, int maj)
 //		while (t->sizemin-- > 0)
 //			ft_putchar(' ');
 	}
-	t->ret += (!t->unbr && base == 8 && t->prefixe) ? t->len + 1 : t->len;
+	t->ret += t->len;
 //	if (t->prefixe == 2)
 //		t->ret += 2;
 }
+
 void	ft_unsigned2(t_stringinfo *t)
 {
-	if (!t->unbr && (!t->prefixe || t->unbr || (*t->str != 'o' && *t->str != 'O')))
-		t->prefixe = 0;
-	if (*t->str == 'o')
-		ft_line_unsigned(t, 8, 0);
-	else if (*t->str == 'O')
-		ft_line_unsigned(t, 8, 1);
+//	if (!t->unbr && (!t->prefixe || t->unbr || (*t->str != 'o' && *t->str != 'O')))
+//		t->prefixe = 0;
+	if ((*t->str == 'o' || *t->str == 'O') && t->prefixe)
+		ft_octal_prefixe(t, 8);
+	else if ((*t->str == 'o' || *t->str == 'O') && !t->prefixe)
+		ft_octal_no_prefixe(t, 8);
 	else if (*t->str == 'u' || *t->str == 'U')
-		ft_line_unsigned(t, 10, 0);
+		ft_hexa_dec(t, 10, 0);
 	else if (*t->str == 'x')
-		ft_line_unsigned(t, 16, 0);
+		ft_hexa_dec(t, 16, 0);
 	else if (*t->str == 'X')
-		ft_line_unsigned(t, 16, 1);
+		ft_hexa_dec(t, 16, 1);
 	else if (*t->str == 'p')
 	{
 		t->prefixe = 2;
 //		ft_putendl("vient de la");
-		ft_line_unsigned(t, 16, 0);
+		ft_pointeur(t, 16, 0);
 	}
 }
 

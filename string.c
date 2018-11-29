@@ -59,12 +59,13 @@ int 	ft_oct_print(t_stringinfo *t)
 	{
 		while (oct < t->precision && t->wstring[i])
 		{
-			oct += ft_octet(t->wstring[i]);
-//			ft_putnbr(oct);
+			if(oct + ft_octet(t->wstring[i]) <= t->precision)
+				oct += ft_octet(t->wstring[i]);
+			else
+				return(oct);
 			i++;
 		}
 	}
-//	ft_putnbr(oct);
 	return (oct);
 }
 
@@ -89,13 +90,6 @@ int		ft_wstr2(t_stringinfo *t)
 			ft_putc_times('0', t->sizemin);
 		else
 			ft_putc_times(' ', t->sizemin);
-//		while (t->sizemin-- > 0)
-//		{
-//			if(t->zeros)
-//				ft_putchar('0');
-//			else
-//				ft_putchar(' ');
-//		}
 	}
 	while(j < oct)
 	{
@@ -107,20 +101,17 @@ int		ft_wstr2(t_stringinfo *t)
 		i++;
 	}
 	if(t->aligne_g)
-	{
 		ft_putc_times(' ', t->sizemin);
-//		while(t->sizemin-- > 0)
-//			ft_putchar(' ');
-	}
 	return(0);
 }
 
 int		ft_str2(t_stringinfo *t)
 {
 	int len = 0;
+	char *str = "";
 //	ft_putendl("ta mere");
 //ft_putnbr(t->precision);
-	if (t->string == NULL)
+	if(t->string == NULL)
 	{
 		ft_putstr("(null)");
 		t->ret += 6;
@@ -137,25 +128,14 @@ int		ft_str2(t_stringinfo *t)
 			ft_putc_times('0', t->sizemin);
 		else
 			ft_putc_times(' ', t->sizemin);
-	//	while (t->sizemin-- > 0)
-	//	{
-	//		if(t->zeros)
-	//			ft_putchar('0');
-	//		else
-	//			ft_putchar(' ');
-	//	}
 	}
 //	ft_putnbr(t->precision);
-	if (!t->string)
-		ft_putstr("(null)");
+//	if (!t->string)
+//		ft_putstr("(null)");
 	if (t->string[0])
 		ft_putnstr((char *)t->string, t->precision);
 	if (t->aligne_g)
-	{
 		ft_putc_times(' ', t->sizemin);
-//		while (t->sizemin-- > 0)
-//			ft_putchar(' ');
-	}
 	return(0);
 }
 

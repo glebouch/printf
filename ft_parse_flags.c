@@ -49,6 +49,7 @@ void	ft_flags_ponct(t_stringinfo *t)
 	if (*t->str == '-')
 	{
 		t->aligne_g = 1;
+//		t->zeros = (t->zeros > 0) ? -1 : 0;
 		t->zeros = 0;
 	}
 	else if (*t->str == '+')
@@ -62,6 +63,7 @@ void	ft_flags_ponct(t_stringinfo *t)
 	{
 		t->str += (ft_isdigit(*(t->str + 1)) != 0) ? 1 : 0;
 		t->precision = ft_atoi(t->str);
+//		t->zeros = (t->zeros > 0) ? -1 : 0;
 		t->zeros = 0;
 //		ft_putstr(t->str);
 		if(ft_atoi(t->str))

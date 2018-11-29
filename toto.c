@@ -13,20 +13,163 @@ int main()
 {
 	setlocale(LC_ALL, "");
 	int a = 0;
+	char *str = NULL;
 //	long double b = 1234.1234612834587;
 //	a = printf("\nprintf %12Lf\n", b);
 //	ft_putnbr(a);
-	a = ft_printf("\nft_pri %. 12+lf\n", 42.123);
+//	a = ft_printf("\nft_pri %. 12+lf\n", 42.123);
+//	ft_putnbr(a);
+//	a = printf("\n%p\n", 0, 0);
+//	ft_putnbr(a);
+//	a = ft_printf("\n%p\n", 0, 0);
+//	ft_putnbr(a);
+//	a = printf("\n%.p, %.0p\n", 0, 0);
+//	ft_putnbr(a);
+//	a = ft_printf("\n%.p, %.0p\n", 0, 0);
+//	ft_putnbr(a);
+//	sleep(5);
+
+
+	a = printf("\n@moulitest: %s\n", NULL);
 	ft_putnbr(a);
-	a = printf("\n%p\n", 0, 0);
+	a = ft_printf("\n@moulitest: %s\n", NULL);
 	ft_putnbr(a);
-	a = ft_printf("\n%p\n", 0, 0);
+
+	a = printf("\n{% s}\n", NULL);
+	ft_putnbr(a);
+	a = ft_printf("\n{% s}\n", NULL);
+	ft_putnbr(a);
+
+	a = printf("\n[%+s]\n", 0);
+	ft_putnbr(a);
+	a = ft_printf("\n[%+s]\n", 0);
+	ft_putnbr(a);
+
+	a = printf("\n%.o, %.0o\n", 0, 0);
+	ft_putnbr(a);
+	a = ft_printf("\n%.o, %.0o\n", 0, 0);
+	ft_putnbr(a);
+
+	a = printf("\n[%c]\n", 200);
+	ft_putnbr(a);
+	a = ft_printf("\n[%c]\n", 200);
+	ft_putnbr(a);
+
+	a = printf("\n%0.1o, %0.9o\n", 0, 0);
+	ft_putnbr(a);
+	a = ft_printf("\n%0.1o, %0.9o\n", 0, 0);
+	ft_putnbr(a);
+
+	a = printf("\n%014.1o, %014.9o\n", 0, 0);
+	ft_putnbr(a);
+	a = ft_printf("\n%014.1o, %014.9o\n", 0, 0);
+	ft_putnbr(a);
+
+	a = printf("\n%14.1o, %14.9o\n", 0, 0);
+	ft_putnbr(a);
+	a = ft_printf("\n%14.1o, %14.9o\n", 0, 0);
+	ft_putnbr(a);
+
+
+	a = printf("\n%.o, %.0o\n", 14, 14);
+	ft_putnbr(a);
+	a = ft_printf("\n%.o, %.0o\n", 14, 14);
+	ft_putnbr(a);
+
+	a = printf("\n%.1o, % .1o\n", 14, 14);
+	ft_putnbr(a);
+	a = ft_printf("\n%.1o, % .1o\n", 14, 14);
+	ft_putnbr(a);
+
+	a = printf("\n%0.1o, %0.9o\n", 14, 14);
+	ft_putnbr(a);
+	a = ft_printf("\n%0.1o, %0.9o\n", 14, 14);
+	ft_putnbr(a);
+
+	a = printf("\n%014.1o, %014.9o\n", 14, 14);
+	ft_putnbr(a);
+	a = ft_printf("\n%014.1o, %014.9o\n", 14, 14);
+	ft_putnbr(a);
+
+	a = printf("\n%14.1o, %14.9o\n", 14, 14);
+	ft_putnbr(a);
+	a = ft_printf("\n%14.1o, %14.9o\n", 14, 14);
+	ft_putnbr(a);
+
+
+	a = printf("\n%.4S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	ft_putnbr(a);
+	a = ft_printf("\n%.4S\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	ft_putnbr(a);
+
+	a = printf("\n%.4S\n", L"我是一只猫。");
+	ft_putnbr(a);
+	a = ft_printf("\n%.4S\n", L"我是一只猫。");
+	ft_putnbr(a);
+
+	a = printf("\n%15.4S\n", L"我是一只猫。");
+	ft_putnbr(a);
+	a = ft_printf("\n%15.4S\n", L"我是一只猫。");
+	ft_putnbr(a);
+
+	a = printf("\n%014.1o, %014.9o\n", 0, 0);
+	ft_putnbr(a);
+	a = ft_printf("\n%014.1o, %014.9o\n", 0, 0);
+	ft_putnbr(a);
+
+	a = printf("\n%14.1o, %14.9o\n", 0, 0);
+	ft_putnbr(a);
+	a = ft_printf("\n%14.1o, %14.9o\n", 0, 0);
+	ft_putnbr(a);
+/*	
+	a = printf("\n%#.x, %#.0x\n", 0, 0);
+	ft_putnbr(a);
+	a = ft_printf("\n%#.x, %#.0x\n", 0, 0);
 	ft_putnbr(a);
 	a = printf("\n%.p, %.0p\n", 0, 0);
 	ft_putnbr(a);
 	a = ft_printf("\n%.p, %.0p\n", 0, 0);
 	ft_putnbr(a);
-	sleep(5);
+	a = printf("\n{%05.c}\n", 0);
+	ft_putnbr(a);
+	a = ft_printf("\n{%05.c}\n", 0);
+	ft_putnbr(a);
+	a = printf("\n{%05.s}\n", 0);
+	ft_putnbr(a);
+	a = ft_printf("\n{%05.s}\n", 0);
+	ft_putnbr(a);
+
+	a = printf("\n{%05.s}\n", str);
+	ft_putnbr(a);
+	a = ft_printf("\n{%05.s}\n", str);
+	ft_putnbr(a);
+
+	a = printf("\n{%05.s}\n", "");
+	ft_putnbr(a);
+	a = ft_printf("\n{%05.s}\n", "");
+	ft_putnbr(a);
+
+	a = printf("\n{%05.%}\n", 0);
+	ft_putnbr(a);
+	a = ft_printf("\n{%05.%}\n", 0);
+	ft_putnbr(a);
+	a = printf("\n{%05.Z}\n", 0);
+	ft_putnbr(a);
+	a = ft_printf("\n{%05.Z}\n", 0);
+	ft_putnbr(a);
+	a = printf("\n{%#.5x}\n", 1);
+	ft_putnbr(a);
+	a = ft_printf("\n{%#.5x}\n", 1);
+	ft_putnbr(a);
+	a = printf("\n%#.3o\n", 1);
+	ft_putnbr(a);
+	a = ft_printf("\n%#.3o\n", 1);
+	ft_putnbr(a);
+	a = printf("\n{%05.S}\n", L"42 c est cool");
+	ft_putnbr(a);
+	a = ft_printf("\n{%05.S}\n", L"42 c est cool");
+	ft_putnbr(a);
+	*/
 //	a = printf("\nprintf %f\n", 42);
 //	ft_putnbr(a);
 //	a = ft_printf("\nft_pri %f\n", 42);

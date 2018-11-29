@@ -18,33 +18,32 @@ void	ft_char2(t_stringinfo *t)
 	int oct;
 
 //	ft_putendl("toto\n");
-	oct = ft_octet(t->ch);
+	oct = (t->ch == 0) ? 1 : ft_octet((int)t->ch);
 	t->sizemin = (t->sizemin > oct) ? t->sizemin - oct : 0;
 	t->len += t->sizemin + oct;
+//	ft_putnbr(t->len);
+//	ft_putnbr(ft_octet(200));
+//	ft_putnbr(oct);
+//	ft_putnbr(t->ch);
+
 	if (!t->aligne_g)
 	{
 		if (t->zeros)
 			ft_putc_times('0', t->sizemin);
 		else
 			ft_putc_times(' ', t->sizemin);
-//		while (t->sizemin-- > 0)
-//		{
-//			if(t->zeros)
-//				ft_putchar('0');
-//			else
-//				ft_putchar(' ');
-//		}
 	}
 	if (t->ch < 127)
 		ft_putchar((char)t->ch);
-	else
+	else if (t->ch && (*t->str == 'C' || t->conversion == 3))
 		ft_putchar_unicode(t->ch, oct);
-	if (t->aligne_g)
+	else
 	{
-		ft_putc_times(' ', t->sizemin);
-//		while (t->sizemin-- > 0)
-//			ft_putchar(' ');
+		ft_putchar((char)t->ch);
+		t->len += 1 - oct;
 	}
+	if (t->aligne_g)
+		ft_putc_times(' ', t->sizemin);
 	t->ret += t->len;
 }
 
@@ -56,6 +55,6 @@ void	ft_char(t_stringinfo *t)
 	else if (t->conversion == 3 || *t->str == 'C')
 		t->ch = (wchar_t)va_arg(t->ap, unsigned int);
 	else if (*t->str == 'c')
-		t->ch = (char)va_arg(t->ap, unsigned int);
+		t->ch = (unsigned char)va_arg(t->ap, unsigned int);
 	ft_char2(t);
 }
