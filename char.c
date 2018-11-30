@@ -12,20 +12,13 @@
 
 #include "ft_printf.h"
 
-
 void	ft_char2(t_stringinfo *t)
 {
 	int oct;
 
-//	ft_putendl("toto\n");
 	oct = (t->ch == 0) ? 1 : ft_octet((int)t->ch);
 	t->sizemin = (t->sizemin > oct) ? t->sizemin - oct : 0;
 	t->len += t->sizemin + oct;
-//	ft_putnbr(t->len);
-//	ft_putnbr(ft_octet(200));
-//	ft_putnbr(oct);
-//	ft_putnbr(t->ch);
-
 	if (!t->aligne_g)
 	{
 		if (t->zeros)
@@ -49,7 +42,6 @@ void	ft_char2(t_stringinfo *t)
 
 void	ft_char(t_stringinfo *t)
 {
-//	ft_putendl("totoro");
 	if (*t->str != 'c' && *t->str != 'C')
 		t->ch = *t->str;
 	else if (t->conversion == 3 || *t->str == 'C')

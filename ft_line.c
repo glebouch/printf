@@ -12,12 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_eol(t_stringinfo *t)
-{
-	exit(0);
-}
-
-int	ft_size(uintmax_t n)
+int		ft_size(uintmax_t n)
 {
 	int	size;
 
@@ -30,7 +25,7 @@ int	ft_size(uintmax_t n)
 	return (size);
 }
 
-int	ft_size_base(uintmax_t n, int base)
+int		ft_size_base(uintmax_t n, int base)
 {
 	if ((n / base) != 0)
 		return (ft_size_base(n / base, base) + 1);
@@ -52,7 +47,7 @@ void	ft_putnbr_base(uintmax_t n, int base, int maj, int neg)
 	ft_putchar(tab[n % base]);
 }
 
-void ft_init(t_stringinfo *t)
+void	ft_init(t_stringinfo *t)
 {
 	t->conversion = 0;
 	t->space = 0;

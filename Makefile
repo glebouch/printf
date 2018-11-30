@@ -36,6 +36,7 @@ mlib :
 
 clean :
 	@make clean -C ./libft/
+	@/bin/rm -f *.o
 	
 fclean :
 	@make fclean -C ./libft/

@@ -20,7 +20,9 @@
 
 void	ft_flags_conversion(t_stringinfo *t)
 {
-	int conv = 0;
+	int conv;
+
+	conv = 0;
 	if (*t->str == 'h')
 	{
 		if (t->str[1] == 'h')
@@ -62,20 +64,15 @@ void	ft_flags_ponct(t_stringinfo *t)
 		t->str += (ft_isdigit(*(t->str + 1)) != 0) ? 1 : 0;
 		t->precision = ft_atoi(t->str);
 		t->zeros = (t->zeros > 0) ? -1 : 0;
-		if(ft_atoi(t->str))
+		if (ft_atoi(t->str))
 			t->str += ft_size(t->precision) - 1;
 	}
 }
 
 void	ft_parse_flags(t_stringinfo *t)
 {
-// 	ft_putstr(t->str);
 	while (*t->str && ft_strchr("-+0 #.hljz123456789", *t->str))
 	{
-//		ft_putstr(t->str);
-//		ft_putendl("coucou");
-//	ft_putchar(*t->str);
-		
 		if (*t->str == '#')
 			t->prefixe = 1;
 		else if (*t->str == '0' && t->aligne_g == 0 && t->precision < 0)
@@ -84,29 +81,14 @@ void	ft_parse_flags(t_stringinfo *t)
 		{
 			t->sizemin = ft_atoi(t->str);
 			while (ft_isdigit(*(t->str + 1)))
-			t->str++;
+				t->str++;
 		}
 		else if (ft_strchr("-+ .", *t->str))
 			ft_flags_ponct(t);
 		else if (ft_strchr("hljz", *t->str))
 			ft_flags_conversion(t);
-//		ft_putendl("fini while");
-//		ft_putchar(*t->str);
-//		ft_putendl(" is char");
-//		ft_putnbr(t->zeros);
-//		ft_putnbr(t->aligne_g);
-//		ft_putendl(" is zero");
-//		ft_putnbr(t->precision);
-//		ft_putendl(" is precision");
-//		ft_putnbr(t->sizemin);
-//		ft_putendl(" is sizemin\n");
 		t->str++;
 	}
-//	ft_putstr("lalalala\n");
-//	ft_putstr(t->str);
-//	ft_putchar('[');
-//	ft_putchar(*t->str);
-//	ft_putstr("]\n");
 	if (*t->str != '\0')
 		ft_parse_specifier(t);
 }
