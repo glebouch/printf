@@ -30,15 +30,15 @@ int main()
 //	sleep(5);
 
 
-	a = printf("\n@moulitest: %s\n", NULL);
-	ft_putnbr(a);
-	a = ft_printf("\n@moulitest: %s\n", NULL);
-	ft_putnbr(a);
+//	a = printf("\nCoucou %.0s\n%s%---12s\n", "hi", "coco", NULL);
+//	ft_putnbr(a);
+//	a = ft_printf("\nCoucou %.0s\n%s%---12s\n", "hi", "coco", NULL);
+//	ft_putnbr(a);
 
-	a = printf("\n{% s}\n", NULL);
-	ft_putnbr(a);
-	a = ft_printf("\n{% s}\n", NULL);
-	ft_putnbr(a);
+//	a = printf("\n%8C et coco %C titi %lc\n", 3250, 0x11ffff, 'a');
+//	ft_putnbr(a);
+//	a = ft_printf("\n%8C et coco %C titi %lc\n", 3250, 0x11ffff, 'a');
+//	ft_putnbr(a);
 
 	a = printf("\n[%+s]\n", 0);
 	ft_putnbr(a);
@@ -120,6 +120,11 @@ int main()
 	a = printf("\n%14.1o, %14.9o\n", 0, 0);
 	ft_putnbr(a);
 	a = ft_printf("\n%14.1o, %14.9o\n", 0, 0);
+	ft_putnbr(a);
+
+	a = printf("\n%.hh15d\n", 1500);
+	ft_putnbr(a);
+	a = ft_printf("\n%.hh15d\n", 1500);
 	ft_putnbr(a);
 /*	
 	a = printf("\n%#.x, %#.0x\n", 0, 0);

@@ -36,10 +36,10 @@ mlib :
 
 clean :
 	@make clean -C ./libft/
-	@/bin/rm -f *.o
 	
-fclean : clean
+fclean :
 	@make fclean -C ./libft/
 	@/bin/rm -f $(NAME)
+	@/bin/rm -f *.o
 
 re : fclean	all

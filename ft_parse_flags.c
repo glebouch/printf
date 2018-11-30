@@ -45,12 +45,10 @@ void	ft_flags_conversion(t_stringinfo *t)
 
 void	ft_flags_ponct(t_stringinfo *t)
 {
-//	ft_putstr("passe par ponctuation\n");
 	if (*t->str == '-')
 	{
 		t->aligne_g = 1;
-//		t->zeros = (t->zeros > 0) ? -1 : 0;
-		t->zeros = 0;
+		t->zeros = (t->zeros > 0) ? -1 : 0;
 	}
 	else if (*t->str == '+')
 	{
@@ -63,24 +61,11 @@ void	ft_flags_ponct(t_stringinfo *t)
 	{
 		t->str += (ft_isdigit(*(t->str + 1)) != 0) ? 1 : 0;
 		t->precision = ft_atoi(t->str);
-//		t->zeros = (t->zeros > 0) ? -1 : 0;
-		t->zeros = 0;
-//		ft_putstr(t->str);
+		t->zeros = (t->zeros > 0) ? -1 : 0;
 		if(ft_atoi(t->str))
-			t->str += ft_strlen(ft_itoa(ft_atoi(t->str))) - 1;
-//		if (t->precision)
-//			t->str += ft_strlen(ft_itoa(t->precision)) - 1;
-//		ft_putchar('\n');
-//		ft_putstr(t->str);
+			t->str += ft_size(t->precision) - 1;
 	}
-//	ft_putendl("fini ponct");
 }
-
-/*
-printf("%0.0d", 42)
-printf("%0.d", 42)
-printf("%0.1d", 42)
-*/
 
 void	ft_parse_flags(t_stringinfo *t)
 {
@@ -124,10 +109,4 @@ void	ft_parse_flags(t_stringinfo *t)
 //	ft_putstr("]\n");
 	if (*t->str != '\0')
 		ft_parse_specifier(t);
-//	ft_putstr(t->str);
-//	else
-//	{
-//		ft_putendl("on sort");
-//		exit(0);
-//	}
 }

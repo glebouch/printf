@@ -75,6 +75,9 @@ int		ft_wstr2(t_stringinfo *t)
 	int oct = 0;
 	int i = 0;
 	int j = 0;
+//	ft_putnbr(t->precision);
+	if(!t->precision)
+		t->wstring = "";
 	if (t->wstring == NULL)
 	{
 		ft_putstr("(null)");
@@ -82,7 +85,12 @@ int		ft_wstr2(t_stringinfo *t)
 		return(0);
 	}
 	oct = ft_oct_print(t);
+//	ft_putnbr(oct);
 	t->sizemin = (oct < t->sizemin) ? t->sizemin - oct : 0;
+//	ft_putnbr(t->sizemin);	
+//	ft_putnbr(t->aligne_g);
+
+//	ft_putnbr(t->zeros);
 	t->ret += t->sizemin + oct;
 	if (!t->aligne_g)
 	{
@@ -108,15 +116,12 @@ int		ft_wstr2(t_stringinfo *t)
 int		ft_str2(t_stringinfo *t)
 {
 	int len = 0;
-	char *str = "";
 //	ft_putendl("ta mere");
 //ft_putnbr(t->precision);
+	if(!t->precision)
+		t->string = "";
 	if(t->string == NULL)
-	{
-		ft_putstr("(null)");
-		t->ret += 6;
-		return(0);
-	}
+		t->string = "(null)";
 	len = ft_strlen((char*)t->string);
 	if (t->precision > len || t->precision < 0)
 		t->precision = len;

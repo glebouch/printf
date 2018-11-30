@@ -46,12 +46,12 @@ void	ft_hexa_dec(t_stringinfo *t, int base, int maj)
 //	ft_putnbr(t->len);
 	if (!t->aligne_g)
 	{
-		if(t->prefixe && t->zeros && t->unbr)
+		if(t->prefixe && t->zeros > 0 && t->unbr)
 		{
 			ft_prefix(t, base, maj);
 			t->prefixe = 0;
 		}
-		if (t->zeros)
+		if (t->zeros > 0)
 			ft_putc_times('0', t->sizemin);
 		else
 			ft_putc_times(' ', t->sizemin);
@@ -61,10 +61,6 @@ void	ft_hexa_dec(t_stringinfo *t, int base, int maj)
 	if(t->unbr || (!t->unbr && t->prefixe == 2))
 		ft_prefix(t, base, maj);
 	ft_putc_times('0', t->precision);
-//	while (t->precision-- > 0)
-//		ft_putchar('0');
-//	if (!len)
-//		t->ret--;
 	if (len || (!t->unbr && t->prefixe))
 		ft_putnbr_base(t->unbr, base, maj, 0);
 	if (t->aligne_g)

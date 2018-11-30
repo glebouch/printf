@@ -123,7 +123,7 @@ void ft_putfloat(t_stringinfo *t)
 	}
 	if (t->space && t->f >= 0)
 		ft_putchar(' ');
-	if (t->zeros)
+	if (t->zeros > 0)
 	{
 		if (t->f < 0)
 			ft_putchar('-');

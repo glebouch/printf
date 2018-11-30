@@ -37,7 +37,7 @@ void ft_signed2(t_stringinfo *t)
 	}
 	if (t->space && t->nbr >= 0)
 		ft_putchar(' ');
-	if (t->zeros)
+	if (t->zeros > 0)
 	{
 		if (t->nbr < 0)
 			ft_putchar('-');
@@ -46,19 +46,12 @@ void ft_signed2(t_stringinfo *t)
 	}
 	if (!t->aligne_g)
 	{
-//		if (t->zeros)
-//			ft_putc_times('0', t->sizemin);
-//		else
-//			ft_putc_times(' ', t->sizemin);
-		while (t->sizemin-- > 0)
-		{
-			if(t->zeros)
-				ft_putchar('0');
-			else
-				ft_putchar(' ');
-		}
+		if (t->zeros > 0)
+			ft_putc_times('0', t->sizemin);
+		else
+			ft_putc_times(' ', t->sizemin);
 	}
-	if(!t->zeros)
+	if(t->zeros <= 0)
 	{
 		if (t->nbr < 0)
 			ft_putchar('-');

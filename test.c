@@ -21,13 +21,8 @@ void	ft_putc_times(char c, int i)
 	if (i > 0)
 	{
 		str[i] = '\0';
-		i--;
-		while (i >= 0)
-		{
+		while (i-- > 0)
 			str[i] = c;
-//			ft_putnbr(i);
-			i--;
-		}
 		ft_putstr(str);
 	}
 	free(str);
@@ -38,13 +33,9 @@ int	ft_percent(t_stringinfo *t)
 	t->str++;
 	ft_init(t);
 	if (*t->str && ft_strchr("123456789-+0 #.sSpdDioOuUfxXcChljz", *t->str))
-	{
-//		ft_putstr("tamere\n");
 		ft_parse_flags(t);
-	}
 	else if (*t->str)
 	{
-//		ft_putendl("totoici");
 		ft_putchar(*t->str);
 		t->ret++;
 	}
