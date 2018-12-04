@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		ft_octal_no_prefixe(t_stringinfo *t, int base)
+void	ft_octal_no_prefixe(t_stringinfo *t, int base)
 {
 	int len;
 	int print_nullunbr;
@@ -40,7 +40,7 @@ int		ft_octal_no_prefixe(t_stringinfo *t, int base)
 	t->ret += t->len;
 }
 
-int		ft_octal_prefixe(t_stringinfo *t, int base)
+void	ft_octal_prefixe(t_stringinfo *t, int base)
 {
 	int len;
 
@@ -67,6 +67,30 @@ int		ft_octal_prefixe(t_stringinfo *t, int base)
 		ft_putc_times(' ', t->sizemin);
 }
 
+void	ft_pointeur2(t_stringinfo *t, int base, int maj, int print_nbr)
+{
+	if (!t->aligne_g)
+	{
+		if (t->zeros > 0)
+		{
+			ft_prefix(t, base, maj);
+			t->prefixe = 0;
+		}
+		if (t->zeros > 0)
+			ft_putc_times('0', t->sizemin);
+		else
+			ft_putc_times(' ', t->sizemin);
+	}
+	ft_pointeur2(t, base, maj, print_nbr);
+	if (t->prefixe == 2)
+		ft_prefix(t, base, maj);
+	ft_putc_times('0', t->precision);
+	if (print_nbr)
+		ft_putnbr_base(t->unbr, base, maj, 0);
+	if (t->aligne_g)
+		ft_putc_times(' ', t->sizemin);
+}
+
 void	ft_pointeur(t_stringinfo *t, int base, int maj)
 {
 	int len;
@@ -85,23 +109,5 @@ void	ft_pointeur(t_stringinfo *t, int base, int maj)
 	t->sizemin = (t->sizemin > t->precision + len + t->prefixe) ? \
 				t->sizemin - (t->precision + len + t->prefixe) : 0;
 	t->ret += t->sizemin + t->precision + len + t->prefixe;
-	if (!t->aligne_g)
-	{
-		if (t->zeros > 0)
-		{
-			ft_prefix(t, base, maj);
-			t->prefixe = 0;
-		}
-		if (t->zeros > 0)
-			ft_putc_times('0', t->sizemin);
-		else
-			ft_putc_times(' ', t->sizemin);
-	}
-	if (t->prefixe == 2)
-		ft_prefix(t, base, maj);
-	ft_putc_times('0', t->precision);
-	if (print_nbr)
-		ft_putnbr_base(t->unbr, base, maj, 0);
-	if (t->aligne_g)
-		ft_putc_times(' ', t->sizemin);
+	ft_pointeur2(t, base, maj, print_nbr);
 }

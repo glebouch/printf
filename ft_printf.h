@@ -49,7 +49,8 @@ typedef struct	s_stringinfo
 	char		*string;
 	wchar_t		ch;
 	va_list		ap;
-	double		f;
+	long double	f;
+	int			long_double;
 }				t_stringinfo;
 
 char			*ft_strndup(const char *line, size_t i);
@@ -69,7 +70,8 @@ int				ft_octet(wchar_t caract);
 int				ft_oct_print(t_stringinfo *t);
 void			ft_putfloat(t_stringinfo *t);
 void			ft_pointeur(t_stringinfo *t, int base, int maj);
-int				ft_octal_no_prefixe(t_stringinfo *t, int base);
-int				ft_octal_prefixe(t_stringinfo *t, int base);
+void			ft_octal_no_prefixe(t_stringinfo *t, int base);
+void			ft_octal_prefixe(t_stringinfo *t, int base);
+int				ft_prefix(t_stringinfo *t, int base, int maj);
 
 #endif

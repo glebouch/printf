@@ -41,6 +41,7 @@ void	ft_flags_conversion(t_stringinfo *t)
 		conv = 5;
 	else if (*t->str == 'z')
 		conv = 6;
+	t->long_double = (*t->str == 'L') ? 1 : 0;
 	t->conversion = (conv > t->conversion) ? conv : t->conversion;
 	t->str += (conv == 1 || conv == 4) ? 1 : 0;
 }
@@ -71,7 +72,7 @@ void	ft_flags_ponct(t_stringinfo *t)
 
 void	ft_parse_flags(t_stringinfo *t)
 {
-	while (*t->str && ft_strchr("-+0 #.hljz123456789", *t->str))
+	while (*t->str && ft_strchr("-+0 #.hlLjz123456789", *t->str))
 	{
 		if (*t->str == '#')
 			t->prefixe = 1;
@@ -85,7 +86,7 @@ void	ft_parse_flags(t_stringinfo *t)
 		}
 		else if (ft_strchr("-+ .", *t->str))
 			ft_flags_ponct(t);
-		else if (ft_strchr("hljz", *t->str))
+		else if (ft_strchr("hlLjz", *t->str))
 			ft_flags_conversion(t);
 		t->str++;
 	}

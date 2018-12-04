@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_power.c                                         :+:      :+:    :+:   */
+/*   ft_putll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: glebouch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/13 09:57:09 by glebouch          #+#    #+#             */
-/*   Updated: 2017/11/14 20:38:22 by glebouch         ###   ########.fr       */
+/*   Created: 2017/11/13 10:38:32 by glebouch          #+#    #+#             */
+/*   Updated: 2017/11/13 20:10:05 by glebouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long long int	ft_power(int a, int b)
+void	ft_putll(long long n)
 {
-	long long int	c;
+	long long min;
 
-	c = a;
-	if (b == 0)
-		return (1);
-	while (b-- > 1)
-		c *= a;
-	return (c);
+	min = -9223372036854775807;
+	if(n == min)
+	{
+		write(1, "-9223372036854775808", 20);
+		return;
+	}
+	if (n < 0)
+	{
+		n = -n;
+		write(1, "-", 1);
+	}
+	if ((n / 10) != 0)
+		ft_putll(n / 10);
+	ft_putchar_fd((n % 10) + '0', 1);
 }

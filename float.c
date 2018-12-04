@@ -28,14 +28,40 @@ int		ft_float_len(float f, int precision, int *lp_ent, int *lp_dec)
 		return (*lp_ent);
 }
 
-int		ft_float2int(double f, long long int *a, long long int *b, int precis)
+int		ft_float2ll(long double f, long long *a, long long *b, int precis)
+{
+//	ft_putstr(" passe par float2ll ");
+	long long int	p_ent;
+	long long int	prec;
+	int				ret = 1;
+	long double		p_dec;
+
+	prec = ft_power(10, precis);
+	p_ent = (int)f;
+	p_dec = f - p_ent;
+	*a = p_ent;
+	*b = (long long int)(p_dec * prec);
+	if (*b != p_dec * prec)
+	{
+		if ((long long int)(p_dec * prec * 10) % 10 >= 5)
+			*b += 1;
+	}
+	while (p_dec && (int)(p_dec * 10) == 0 && ret < precis)
+	{
+		ret++;
+		p_dec = p_dec * 10;
+	}
+	return (ret - 1);
+}
+
+int		ft_float2int(double f, int *a, int *b, int precis)
 {
 	int		p_ent = 0;
 	int		prec = 1;
 	int		ret = 1;
 	double	p_dec = 0;
 
-	prec = ft_power(10, precis);
+	prec = (int)ft_power(10, precis);
 	p_ent = (int)f;
 	p_dec = f - p_ent;
 	*a = p_ent;
@@ -53,28 +79,29 @@ int		ft_float2int(double f, long long int *a, long long int *b, int precis)
 	return (ret - 1);
 }
 
-void	ft_putfloat2(double f, int precision)
+void	ft_putfloat2(t_stringinfo *t, long double f, int precision)
 {
 	int reste = 0;
 	int zero = 0;
-	int b;
-	int a;
+	long long b;
+	long long a;
 
 	ft_putnbr((long long)f);
 	if (precision)
 		ft_putchar('.');
-	if (precision == -1)
-		precision = 6;
-	if (precision >= 6)
+	if (precision >= 6 && !t->long_double)
 	{
 		reste = precision - 6;
 		precision = 6;
 	}
-	zero = ft_float2int(f, &a, &b, precision);
+	if (!t->long_double)
+		zero = ft_float2int((double)f, (int *)&a, (int *)&b, precision);
+	else
+		zero = ft_float2ll(f, &a, &b, precision);
 	if (b)
 	{
 		ft_putc_times('0', zero);
-		ft_putnbr(b);
+		ft_putll(b);
 	}
 	if (!b && precision)
 		ft_putc_times('0', precision);
@@ -87,9 +114,13 @@ void	ft_putfloat(t_stringinfo *t)
 	int lp_ent = 0;
 	int lp_dec = 0;
 
-	t->f = va_arg(t->ap, double);
+//	ft_putnbr(t->long_double);
+	t->f = (t->long_double) ? va_arg(t->ap, long double) : va_arg(t->ap, double);
 	len = ft_float_len(t->f, t->precision, &lp_ent, &lp_dec);
+//	ft_putnbr(len);
+	t->long_double = (t->precision > 6) ? 1 : 0;
 	t->precision = (t->precision < 0) ? 6 : t->precision;
+//	ft_putnbr(t->precision);
 	t->sizemin = (t->sizemin > len) ? t->sizemin - len : 0;
 	t->ret += t->sizemin + len;
 	if (t->f < 0 || t->sign || (t->space && t->f >= 0))
@@ -109,7 +140,7 @@ void	ft_putfloat(t_stringinfo *t)
 	}
 	if (!t->aligne_g)
 	{
-		if (t->zeros > 0)
+		if (t ->zeros)
 			ft_putc_times('0', t->sizemin);
 		else
 			ft_putc_times(' ', t->sizemin);
@@ -121,7 +152,7 @@ void	ft_putfloat(t_stringinfo *t)
 		if (t->f >= 0 && t->sign == 1)
 			ft_putchar('+');
 	}
-	ft_putfloat2(t->f, t->precision);
+	ft_putfloat2(t, t->f, t->precision);
 	if (t->aligne_g)
 		ft_putc_times(' ', t->sizemin);
 }

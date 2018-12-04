@@ -19,7 +19,7 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
 	  ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_swap.c\
 	  ft_lstremove.c ft_strmjoin.c ft_strndup.c\
 	  get_next_line.c ft_putnstr_fd.c ft_sizetoa.c ft_putnstr.c \
-	  ft_imaxabs.c ft_power.c
+	  ft_imaxabs.c ft_power.c ft_putll.c
 
 FLAGS = -Wall -Werror -Wextra
 

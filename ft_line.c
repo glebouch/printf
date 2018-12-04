@@ -64,4 +64,5 @@ void	ft_init(t_stringinfo *t)
 	t->wstring = NULL;
 	t->ch = 0;
 	t->f = 0;
+	t->long_double = 0;
 }
