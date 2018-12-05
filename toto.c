@@ -14,58 +14,78 @@ int main()
 {
 	setlocale(LC_ALL, "");
 	int a = 0;
-	float c = 0.000;
-	float b = 200.1;
-	long long d = 123456789123456789L;
+//	float c = 0.000;
+//	float b = 200.1;
+	float d = 123.000123;
 	char *str = NULL;
 
 //	ft_putll(123456789123456789);
-//	a = printf("\n%Lf, %L.15f\n", 10.2, 123.1234567812345L);
+//	a = printf("\n[%Lf], [%.15Lf]\n", d, d);
+//	ft_putnbr(a);
+//	a = ft_printf("\n[%Lf], [%.15Lf]\n", d, d);
+//	ft_putnbr(a);
+
+	a = printf("\n[%f] [%20f]\n", d, d);
 	ft_putnbr(a);
-	a = ft_printf("\n%Lf, %.15Lf\n", 123.1234567812345L, 123.12345678L);
+	a = ft_printf("\n[%f] [%20f]\n", d, d);
 	ft_putnbr(a);
 
-	a = printf("\n[%f] [%f]\n", c, 123.12);
+	a = printf("\n[% f], [%.f]\n", d, d);
 	ft_putnbr(a);
-	a = ft_printf("\n[%f] [%f]\n", c, 123.12);
-	ft_putnbr(a);
-
-	a = printf("\n%zd, %zd\n", d, d);
-	ft_putnbr(a);
-	a = ft_printf("\n%zd, %zd\n", d, d);
+	a = ft_printf("\n[% f], [%.f]\n", d, d);
 	ft_putnbr(a);
 
-	a = printf("\n[%f]\n", b);
+	a = printf("\n[%-f], [%-.f]\n", d, d);
 	ft_putnbr(a);
-	a = ft_printf("\n[%f]\n", b);
-	ft_putnbr(a);
-printf("\ntoto\n");
-	a = printf("\n%0f, %0.f\n", c, c);
-	ft_putnbr(a);
-	a = ft_printf("\n%0f, %0.f\n", c, c);
+	a = ft_printf("\n[%-f], [%-.f]\n", d, d);
 	ft_putnbr(a);
 
-	a = printf("\n%014.f, %014f\n", c, c);
+	a = printf("\n[%- f], [%- +f]\n", d, d);
 	ft_putnbr(a);
-	a = ft_printf("\n%014.f, %014f\n", c, c);
-	ft_putnbr(a);
-
-	a = printf("\n%014.f, %014f\n", b, b);
-	ft_putnbr(a);
-	a = ft_printf("\n%014.f, %014f\n", b, b);
+	a = ft_printf("\n[%- f], [%- +f]\n", d, d);
 	ft_putnbr(a);
 
-	a = printf("\n%014.f, %014.3f\n", c, c);
+	a = printf("\n[%+f], [%014f]\n", d, d);
 	ft_putnbr(a);
-	a = ft_printf("\n%014.f, %014.3f\n", c, c);
-	ft_putnbr(a);
-
-	a = printf("\n%14.1f, %14.9f\n", b, b);
-	ft_putnbr(a);
-	a = ft_printf("\n%14.1f, %14.9f\n", b, b);
+	a = ft_printf("\n[%+f], [%014f]\n", d, d);
 	ft_putnbr(a);
 
+	a = printf("\n[%#f], [%hf]\n", d, d);
+	ft_putnbr(a);
+	a = ft_printf("\n[%#f], [%hf]\n", d, d);
+	ft_putnbr(a);
 
+	a = printf("\n[%.15f], [%.3f]\n", d, d);
+	ft_putnbr(a);
+	a = ft_printf("\n[%.15f], [%.3f]\n", d, d);
+	ft_putnbr(a);
+
+	a = printf("\n[%.1f], [%.0f]\n", d, d);
+	ft_putnbr(a);
+	a = ft_printf("\n[%.1f], [%.0f]\n", d, d);
+	ft_putnbr(a);
+	
+	a = printf("\n[%-f]\n", d);
+	ft_putnbr(a);
+	a = ft_printf("\n[%-f]\n", d);
+	ft_putnbr(a);
+
+	a = printf("\n%014.f, %014f\n", d, d);
+	ft_putnbr(a);
+	a = ft_printf("\n%014.f, %014f\n", d, d);
+	ft_putnbr(a);
+
+	a = printf("\n%014.f, %014.3f\n", d, d);
+	ft_putnbr(a);
+	a = ft_printf("\n%014.f, %014.3f\n", d, d);
+	ft_putnbr(a);
+
+	a = printf("\n%14.1f, %14.9f\n", d, d);
+	ft_putnbr(a);
+	a = ft_printf("\n%14.1f, %14.9f\n", d, d);
+	ft_putnbr(a);
+
+/*
 	a = printf("\n%.o, %.0o\n", 14, 14);
 	ft_putnbr(a);
 	a = ft_printf("\n%.o, %.0o\n", 14, 14);
@@ -121,6 +141,7 @@ printf("\ntoto\n");
 	ft_putnbr(a);
 	a = ft_printf("\n%.hh15d\n", 1500);
 	ft_putnbr(a);
+	*/
 /*	
 	a = printf("\n%#.x, %#.0x\n", 0, 0);
 	ft_putnbr(a);

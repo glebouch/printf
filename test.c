@@ -31,7 +31,7 @@ int		ft_percent(t_stringinfo *t)
 {
 	t->str++;
 	ft_init(t);
-	if (*t->str && ft_strchr("123456789-+0 #.sSpdDioOuUfxXcChljz", *t->str))
+	if (*t->str && ft_strchr("123456789-+0 #.sSpdDioOuUfxXcChlLjz", *t->str))
 		ft_parse_flags(t);
 	else if (*t->str)
 	{
