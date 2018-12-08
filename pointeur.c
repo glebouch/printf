@@ -81,7 +81,6 @@ void	ft_pointeur2(t_stringinfo *t, int base, int maj, int print_nbr)
 		else
 			ft_putc_times(' ', t->sizemin);
 	}
-	ft_pointeur2(t, base, maj, print_nbr);
 	if (t->prefixe == 2)
 		ft_prefix(t, base, maj);
 	ft_putc_times('0', t->precision);

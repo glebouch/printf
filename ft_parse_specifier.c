@@ -12,18 +12,23 @@
 
 #include "ft_printf.h"
 
-/*
-**
-** %[specifier] == d, i, o, u, x, X, c, s, C, S, p, D, O, U;
-**
-*/
+void init_tab(unsigned char **tab)
+{
+	*tab[0] = 192;
+	*tab[1] = 128;
+	*tab[2] = 0;
+	*tab[3] = 0;
+	*tab[4] = 0;
+}
 
 void	ft_putchar_unicode(wchar_t caract, int oct)
 {
-	unsigned char	tab[5] = {192, 128, 0, 0, 0};
+	unsigned char	*tab;
 	int				i;
 
 	i = 1;
+	*tab = [192, 128, 0, 0, 0];
+//	init_tab(&tab);
 	if (oct == 3)
 	{
 		tab[0] = 224;

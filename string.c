@@ -12,52 +12,41 @@
 
 #include "ft_printf.h"
 
-int		ft_oct_print(t_stringinfo *t)
+void	ft_oct_print(t_stringinfo *t, int *oct)
 {
-	int i = 0;
-	int oct = 0;
+	int i;
 
+	i = 0;
 	if (t->precision == 0)
-		return (0);
+		return ;
 	else if (t->precision == -1)
 	{
 		while (t->wstring[i])
 		{
-			oct += ft_octet(t->wstring[i]);
+			*oct += ft_octet(t->wstring[i]);
 			i++;
 		}
 	}
 	else
 	{
-		while (oct < t->precision && t->wstring[i])
+		while (*oct < t->precision && t->wstring[i])
 		{
-			if (oct + ft_octet(t->wstring[i]) <= t->precision)
-				oct += ft_octet(t->wstring[i]);
+			if (*oct + ft_octet(t->wstring[i]) <= t->precision)
+				*oct += ft_octet(t->wstring[i]);
 			else
-				return (oct);
+				return ;
 			i++;
 		}
 	}
-	return (oct);
 }
 
-int		ft_wstr2(t_stringinfo *t)
+void	ft_wstr3(t_stringinfo *t, int oct)
 {
-	int oct = 0;
-	int i = 0;
-	int j = 0;
+	int i;
+	int j;
 
-	if (!t->precision)
-		t->wstring = "";
-	if (t->wstring == NULL)
-	{
-		ft_putstr("(null)");
-		t->ret += 6;
-		return (0);
-	}
-	oct = ft_oct_print(t);
-	t->sizemin = (oct < t->sizemin) ? t->sizemin - oct : 0;
-	t->ret += t->sizemin + oct;
+	i = 0;
+	j = 0;
 	if (!t->aligne_g)
 	{
 		if (t->zeros)
@@ -76,6 +65,25 @@ int		ft_wstr2(t_stringinfo *t)
 	}
 	if (t->aligne_g)
 		ft_putc_times(' ', t->sizemin);
+}
+
+int		ft_wstr2(t_stringinfo *t)
+{
+	int oct;
+
+	oct = 0;
+	if (!t->precision)
+		t->wstring = "";
+	if (t->wstring == NULL)
+	{
+		ft_putstr("(null)");
+		t->ret += 6;
+		return (0);
+	}
+	ft_oct_print(t, &oct);
+	t->sizemin = (oct < t->sizemin) ? t->sizemin - oct : 0;
+	t->ret += t->sizemin + oct;
+	ft_wstr3(t, oct);
 	return (0);
 }
 

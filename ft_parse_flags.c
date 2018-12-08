@@ -12,12 +12,6 @@
 
 #include "ft_printf.h"
 
-/*
-**
-** %[flags] == #, 0, -, ' ', +;
-**
-*/
-
 void	ft_flags_conversion(t_stringinfo *t)
 {
 	int conv;

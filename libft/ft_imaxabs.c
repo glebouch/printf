@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-uintmax_t	ft_imaxabs(intmax_t n)
+long long	ft_imaxabs(long long n)
 {
 	if (n < 0)
 		return (-n);

@@ -92,7 +92,7 @@ int				get_next_line(int fd, char **line);
 char			*ft_sizetoa(size_t n);
 void			ft_putnstr(char const *s, int n);
 void			ft_putnstr_fd(char const *s, int n, int fd);
-size_t			ft_imaxabs(intmax_t n);
+long long		ft_imaxabs(long long n);
 long long int	ft_power(int i, int j);
 void			ft_putll(long long n);
 

@@ -25,22 +25,8 @@ int		ft_prefix(t_stringinfo *t, int base, int maj)
 	return (0);
 }
 
-void	ft_hexa_dec(t_stringinfo *t, int base, int maj)
+void	ft_hexa_dec2(t_stringinfo *t, int base, int maj, int len)
 {
-	int len;
-	int precision_init_zero;
-
-	precision_init_zero = 0;
-	if (t->unbr == 0)
-		t->prefixe = 0;
-	len = ft_size_base((size_t)t->unbr, base) + t->prefixe;
-	if (t->precision == 0 && t->unbr == 0)
-		len = 0;
-	t->precision = (t->precision > (len - t->prefixe)) ? \
-				t->precision - (len - t->prefixe) : 0;
-	t->sizemin = (t->sizemin > t->precision + len) ? \
-				t->sizemin - (t->precision + len) : 0;
-	t->ret += t->sizemin + t->precision + len;
 	if (!t->aligne_g)
 	{
 		if (t->prefixe && t->zeros > 0 && t->unbr)
@@ -60,6 +46,25 @@ void	ft_hexa_dec(t_stringinfo *t, int base, int maj)
 		ft_putnbr_base(t->unbr, base, maj, 0);
 	if (t->aligne_g)
 		ft_putc_times(' ', t->sizemin);
+}
+
+void	ft_hexa_dec(t_stringinfo *t, int base, int maj)
+{
+	int len;
+	int precision_init_zero;
+
+	precision_init_zero = 0;
+	if (t->unbr == 0)
+		t->prefixe = 0;
+	len = ft_size_base((size_t)t->unbr, base) + t->prefixe;
+	if (t->precision == 0 && t->unbr == 0)
+		len = 0;
+	t->precision = (t->precision > (len - t->prefixe)) ? \
+				t->precision - (len - t->prefixe) : 0;
+	t->sizemin = (t->sizemin > t->precision + len) ? \
+				t->sizemin - (t->precision + len) : 0;
+	t->ret += t->sizemin + t->precision + len;
+	ft_hexa_dec2(t, base, maj, len);
 }
 
 void	ft_unsigned2(t_stringinfo *t)

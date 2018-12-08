@@ -67,7 +67,7 @@ void			ft_putnbr_base(uintmax_t n, int base, int maj, int neg);
 int				ft_size_base(uintmax_t n, int base);
 void			ft_putchar_unicode(wchar_t caract, int oct);
 int				ft_octet(wchar_t caract);
-int				ft_oct_print(t_stringinfo *t);
+void			ft_oct_print(t_stringinfo *t, int *oct);
 void			ft_putfloat(t_stringinfo *t);
 void			ft_pointeur(t_stringinfo *t, int base, int maj);
 void			ft_octal_no_prefixe(t_stringinfo *t, int base);
