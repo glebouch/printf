@@ -61,6 +61,7 @@ void			ft_unsigned(t_stringinfo *t);
 void			ft_signed(t_stringinfo *t);
 void			ft_char(t_stringinfo *t);
 int				ft_str(t_stringinfo *t);
+int				ft_str2(t_stringinfo *t);
 void			ft_init(t_stringinfo *t);
 int				ft_size(uintmax_t n);
 void			ft_putnbr_base(uintmax_t n, int base, int maj, int neg);

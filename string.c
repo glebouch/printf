@@ -72,14 +72,14 @@ int		ft_wstr2(t_stringinfo *t)
 	int oct;
 
 	oct = 0;
-	if (!t->precision)
-		t->wstring = "";
 	if (t->wstring == NULL)
 	{
-		ft_putstr("(null)");
-		t->ret += 6;
+		t->string = "(null)";
+		ft_str2(t);
 		return (0);
 	}
+	if (!t->precision)
+		t->wstring = NULL;
 	ft_oct_print(t, &oct);
 	t->sizemin = (oct < t->sizemin) ? t->sizemin - oct : 0;
 	t->ret += t->sizemin + oct;
